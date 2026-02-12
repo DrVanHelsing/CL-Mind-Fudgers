@@ -5044,6 +5044,23 @@ export const skillCategories = [
   { id: 'writing', name: 'Writing', icon: 'Pen' }
 ];
 
+// CL Weekly Schedule (Semester 1 only — CL activities live here)
+export const weekSchedule = [
+  { week: 1,  semester: 1, topic: 'Orientation, OS Basics, File Management',     ai: 'Intro to AI, safe boundaries' },
+  { week: 2,  semester: 1, topic: 'Hardware, Software, Cybersecurity',            ai: 'AI to detect scams; avoid sharing personal data' },
+  { week: 3,  semester: 1, topic: 'Word Basics',                                  ai: 'AI for grammar checking; ethical paraphrasing' },
+  { week: 4,  semester: 1, topic: 'Word Advanced Tools',                           ai: 'Using AI to explain Word features' },
+  { week: 5,  semester: 1, topic: 'Referencing & Academic Integrity',              ai: 'AI ethics; AI-generated citations danger' },
+  { week: 6,  semester: 1, topic: 'Excel Basics',                                 ai: 'AI explaining formulas; detecting incorrect AI formulas' },
+  { week: 7,  semester: 1, topic: 'Data Cleaning',                                ai: 'AI describing cleaning steps; avoid AI-fabricated data' },
+  { week: 8,  semester: 1, topic: 'Charts & Visualisation',                       ai: 'AI critique of chart choices' },
+  { week: 9,  semester: 1, topic: 'Logic Functions',                              ai: 'AI debugging formulas' },
+  { week: 10, semester: 1, topic: 'Word + Excel Integration',                     ai: 'AI clarity review' },
+  { week: 11, semester: 1, topic: 'Digital Citizenship',                          ai: 'AI misinformation identification' },
+  { week: 12, semester: 1, topic: 'Review & Consolidation',                       ai: 'AI as revision assistant' },
+  { week: 13, semester: 1, topic: 'Midterm Assessment',                           ai: 'AI usage transparency' },
+];
+
 // Duration options for filtering
 export const durationOptions = [
   { id: '30', label: 'Under 30 min', max: 30 },

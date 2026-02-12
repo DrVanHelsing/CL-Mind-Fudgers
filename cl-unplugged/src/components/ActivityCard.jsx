@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Clock, Users, ArrowUpRight } from 'lucide-react';
+import { Clock, Users, ArrowUpRight, CalendarDays } from 'lucide-react';
 
 /* ── static style maps ─────────────── */
 const streamBadge = {
@@ -32,13 +32,19 @@ function ActivityCard({ activity, index = 0, onClick }) {
       className="group flex flex-col gap-2 p-3.5 rounded-[10px] glass-element cursor-pointer"
     >
       {/* Top row – badges */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-wrap">
         <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-[0.06em] ${streamBadge[activity.stream]}`}>
           {activity.stream}
         </span>
         <span className={`px-2 py-0.5 rounded-md text-[10px] font-medium ${modeBadge[activity.mode]}`}>
           {activity.mode}
         </span>
+        {activity.stream === 'CL' && activity.week && (
+          <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cl-dim text-cl border border-cl-subtle text-[10px] font-semibold">
+            <CalendarDays className="w-2.5 h-2.5" />
+            Wk {activity.week}
+          </span>
+        )}
         <span className="ml-auto px-2 py-0.5 rounded-md bg-surface-raised border border-edge text-[10px] font-semibold text-muted font-mono">
           {activity.difficulty}
         </span>

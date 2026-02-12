@@ -17,10 +17,11 @@ export default function Activities() {
   const [activeMode,      setActiveMode]      = useState(initialMode);
   const [activeDuration,  setActiveDuration]  = useState('');
   const [activeGroupSize, setActiveGroupSize] = useState('');
+  const [activeWeek,        setActiveWeek]        = useState('');
   const [selectedActivity, setSelectedActivity] = useState(null);
 
   const filtered = useMemo(() => {
-    return activities.filter((a) => {
+    let result = activities.filter((a) => {
       if (activeStream && a.stream !== activeStream) return false;
       if (activeMode   && a.mode   !== activeMode)   return false;
       if (activeDuration) {
@@ -29,6 +30,9 @@ export default function Activities() {
       if (activeGroupSize) {
         if (a.groupSize.replace(/\s/g, '') !== activeGroupSize) return false;
       }
+      if (activeWeek) {
+        if (!a.week || a.week !== parseInt(activeWeek, 10)) return false;
+      }
       if (search) {
         const q = search.toLowerCase();
         const hay = [a.title, a.objective, ...a.skills, a.stream, a.mode].join(' ').toLowerCase();
@@ -36,7 +40,12 @@ export default function Activities() {
       }
       return true;
     });
-  }, [search, activeStream, activeMode, activeDuration, activeGroupSize]);
+    // Sort CL activities by week when CL filter is active
+    if (activeStream === 'CL' || activeWeek) {
+      result.sort((a, b) => (a.week || 99) - (b.week || 99));
+    }
+    return result;
+  }, [search, activeStream, activeMode, activeDuration, activeGroupSize, activeWeek]);
 
   return (
     <section className="min-h-screen">
@@ -56,6 +65,7 @@ export default function Activities() {
           activeMode={activeMode}     setActiveMode={setActiveMode}
           activeDuration={activeDuration} setActiveDuration={setActiveDuration}
           activeGroupSize={activeGroupSize} setActiveGroupSize={setActiveGroupSize}
+          activeWeek={activeWeek} setActiveWeek={setActiveWeek}
           resultCount={filtered.length}
         />
 

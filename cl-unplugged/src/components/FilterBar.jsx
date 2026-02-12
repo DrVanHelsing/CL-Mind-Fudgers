@@ -7,7 +7,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import { streams, modes, durationOptions, groupSizeOptions } from '../data/activities';
+import { streams, modes, durationOptions, groupSizeOptions, weekSchedule } from '../data/activities';
 
 /* ── Stream pills ──────────────────── */
 const streamPill = {
@@ -22,11 +22,12 @@ function FilterBar({
   activeMode, setActiveMode,
   activeDuration, setActiveDuration,
   activeGroupSize, setActiveGroupSize,
+  activeWeek, setActiveWeek,
   resultCount,
 }) {
   const [expanded, setExpanded] = useState(false);
 
-  const hasFilters = activeStream || activeMode || activeDuration || activeGroupSize || search;
+  const hasFilters = activeStream || activeMode || activeDuration || activeGroupSize || activeWeek || search;
 
   const clearAll = () => {
     setSearch('');
@@ -34,6 +35,7 @@ function FilterBar({
     setActiveMode('');
     setActiveDuration('');
     setActiveGroupSize('');
+    setActiveWeek('');
   };
 
   return (
@@ -85,6 +87,49 @@ function FilterBar({
           </button>
         </div>
       </div>
+
+      {/* ── CL Timeline ──────────────────── */}
+      <AnimatePresence>
+        {(activeStream === 'CL' || activeWeek) && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="px-3 pb-2.5 pt-2 border-t border-divider">
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Weekly Timeline</label>
+              <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+                <button
+                  onClick={() => setActiveWeek('')}
+                  className={`shrink-0 px-2.5 py-1.5 rounded-lg border text-[11px] font-medium transition-all duration-150 ${
+                    !activeWeek
+                      ? 'bg-cl-dim text-cl border-cl-subtle'
+                      : 'glass-pill text-body border-edge hover:bg-surface-hover'
+                  }`}
+                >
+                  All Weeks
+                </button>
+                {weekSchedule.map((w) => (
+                  <button
+                    key={w.week}
+                    onClick={() => setActiveWeek(activeWeek === String(w.week) ? '' : String(w.week))}
+                    title={`${w.topic}\nAI Focus: ${w.ai}`}
+                    className={`shrink-0 px-2.5 py-1.5 rounded-lg border text-[11px] font-medium transition-all duration-150 ${
+                      activeWeek === String(w.week)
+                        ? 'bg-cl-dim text-cl border-cl-subtle'
+                        : 'glass-pill text-body border-edge hover:bg-surface-hover'
+                    }`}
+                  >
+                    <span className="font-bold">W{w.week}</span>
+                    <span className="hidden sm:inline text-muted ml-1">· {w.topic.length > 18 ? w.topic.slice(0, 18) + '…' : w.topic}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Expanded filters ─────────────── */}
       <AnimatePresence>
