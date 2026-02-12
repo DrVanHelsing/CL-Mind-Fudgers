@@ -268,7 +268,7 @@ function SortingNetworkSVG({ c, p }) {
       {arr.map((val, i) => (
         <motion.g key={`tok-${i}`} layout transition={{ type: 'spring', stiffness: 120, damping: 14 }}>
           <circle cx={phase === 0 ? 28 : 214} cy={lanes[i]} r="9" fill={c} fillOpacity={0.55} stroke={c} strokeOpacity={0.3} />
-          <text x={phase === 0 ? 28 : 214} y={lanes[i] + 3.5} textAnchor="middle" fill="var(--theme-invert)" fontSize="9" fontWeight="bold" fontFamily="monospace">{val}</text>
+          <text x={phase === 0 ? 28 : 214} y={lanes[i] + 3.5} textAnchor="middle" fill="var(--theme-heading)" fontSize="9" fontWeight="bold" fontFamily="monospace">{val}</text>
         </motion.g>
       ))}
     </svg>
@@ -728,7 +728,7 @@ function NumberLineSVG({ c, p }) {
       {Array.from({ length: 11 }).map((_, i) => (
         <g key={i}>
           <line x1={20 + i * 20} y1="55" x2={20 + i * 20} y2="65" stroke={c} strokeWidth="1" opacity={0.25} />
-          <text x={20 + i * 20} y="78" textAnchor="middle" fill="var(--theme-muted)" fontSize="8" fontFamily="monospace">{i}</text>
+          <text x={20 + i * 20} y="78" textAnchor="middle" fill="var(--theme-body)" fontSize="8" fontFamily="monospace">{i}</text>
         </g>
       ))}
       {/* Person figure */}
@@ -817,7 +817,7 @@ function ProbabilityTokensSVG({ c, p }) {
       {/* Bag */}
       <path d="M28,28 Q28,16 50,14 L72,14 Q94,16 94,28 L98,82 Q98,94 61,94 Q24,94 24,82 Z"
         fill={c} fillOpacity={0.05} stroke={c} strokeOpacity={0.15} strokeWidth="1.5" />
-      <text x="61" y="55" textAnchor="middle" fill="var(--theme-muted)" fontSize="7.5" fontFamily="monospace">BAG</text>
+      <text x="61" y="55" textAnchor="middle" fill="var(--theme-body)" fontSize="7.5" fontFamily="monospace">BAG</text>
       {/* Tokens still in bag */}
       {tokenCols.map((col, i) => (
         drawn.length <= i && (
@@ -831,7 +831,7 @@ function ProbabilityTokensSVG({ c, p }) {
       {drawn.map((col, i) => (
         <motion.g key={`dr-${i}`} initial={{ x: 61, y: 55, scale: 0 }} animate={{ x: 125 + i * 22, y: 40, scale: 1 }} transition={{ type: 'spring', duration: 0.45 }}>
           <circle cx="0" cy="0" r="9" fill={col} fillOpacity={0.55} stroke={col} strokeOpacity={0.3} />
-          <text x="0" y="3" textAnchor="middle" fill="var(--theme-invert)" fontSize="7" fontWeight="bold">{i + 1}</text>
+          <text x="0" y="3" textAnchor="middle" fill="var(--theme-heading)" fontSize="7" fontWeight="bold">{i + 1}</text>
         </motion.g>
       ))}
       {/* Probability readout */}
@@ -841,7 +841,7 @@ function ProbabilityTokensSVG({ c, p }) {
           animate={{ width: (blueCount / drawn.length) * 110 }}
         />
       )}
-      <text x="170" y="88" textAnchor="middle" fill="var(--theme-muted)" fontSize="7.5" fontFamily="monospace">
+      <text x="170" y="88" textAnchor="middle" fill="var(--theme-body)" fontSize="7.5" fontFamily="monospace">
         P(blue) = {drawn.length > 0 ? `${blueCount}/${drawn.length}` : '?'}
       </text>
     </svg>
@@ -869,20 +869,20 @@ function GraphMatchSVG({ c, p }) {
       {/* Bar chart */}
       <g transform="translate(8,16)" opacity={active === 0 ? 1 : 0.2}>
         {[30,50,35,60,42].map((h, i) => <rect key={i} x={3 + i * 14} y={65 - h} width="10" height={h} rx="2" fill={c} fillOpacity={0.5} />)}
-        <text x="36" y="80" textAnchor="middle" fill="var(--theme-muted)" fontSize="6">{labels[0]}</text>
+        <text x="36" y="80" textAnchor="middle" fill="var(--theme-body)" fontSize="6">{labels[0]}</text>
       </g>
       {/* Line chart */}
       <g transform="translate(88,16)" opacity={active === 1 ? 1 : 0.2}>
         <polyline points="5,55 16,30 27,42 38,15 49,25 60,20" fill="none" stroke={c} strokeWidth="2" opacity={0.55} />
         {[5,16,27,38,49,60].map((x, i) => <circle key={i} cx={x} cy={[55,30,42,15,25,20][i]} r="2.5" fill={c} fillOpacity={0.6} />)}
-        <text x="33" y="80" textAnchor="middle" fill="var(--theme-muted)" fontSize="6">{labels[1]}</text>
+        <text x="33" y="80" textAnchor="middle" fill="var(--theme-body)" fontSize="6">{labels[1]}</text>
       </g>
       {/* Scatter */}
       <g transform="translate(168,16)" opacity={active === 2 ? 1 : 0.2}>
         {[[8,52],[18,38],[28,45],[38,22],[48,30],[22,55],[42,18]].map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r="3" fill={c} fillOpacity={0.4} />
         ))}
-        <text x="28" y="80" textAnchor="middle" fill="var(--theme-muted)" fontSize="6">{labels[2]}</text>
+        <text x="28" y="80" textAnchor="middle" fill="var(--theme-body)" fontSize="6">{labels[2]}</text>
       </g>
       {/* Selection frame */}
       <motion.rect
@@ -1289,15 +1289,15 @@ function CardFlipSVG({ c, p }) {
       )}
       {/* Legend */}
       <rect x="160" y="25" width="70" height="60" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
-      <text x="165" y="35" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Row parity check</text>
-      <text x="165" y="45" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Col parity check</text>
+      <text x="165" y="35" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">Row parity check</text>
+      <text x="165" y="45" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">Col parity check</text>
       <text x="165" y="58" fill={showParity ? '#f85149' : 'var(--theme-muted)'} fontSize="5.5" fontWeight="bold" fontFamily="monospace">
         {showParity ? `Found: R${flipPos.r + 1} C${flipPos.c + 1}` : 'Scanning...'}
       </text>
       <rect x="165" y="64" width="8" height="8" rx="1" fill={c} fillOpacity={0.3} stroke={c} strokeOpacity={0.2} />
-      <text x="177" y="70.5" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">= 1 (filled)</text>
+      <text x="177" y="70.5" fill="var(--theme-body)" fontSize="4.5" fontFamily="monospace">= 1 (filled)</text>
       <rect x="165" y="75" width="8" height="8" rx="1" fill="none" stroke={c} strokeOpacity={0.15} />
-      <text x="177" y="81.5" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">= 0 (empty)</text>
+      <text x="177" y="81.5" fill="var(--theme-body)" fontSize="4.5" fontFamily="monospace">= 0 (empty)</text>
     </svg>
   );
 }
@@ -1334,12 +1334,12 @@ function PasswordCalcSVG({ c, p }) {
       <text x={40 + 160 * lv.pct / 100 + 4} y="56" fill={lv.col} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{lv.pct}%</text>
       {/* Info boxes */}
       <rect x="30" y="68" width="80" height="32" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
-      <text x="35" y="79" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Type:</text>
+      <text x="35" y="79" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">Type:</text>
       <text x="55" y="79" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{lv.label}</text>
-      <text x="35" y="92" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Combos:</text>
+      <text x="35" y="92" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">Combos:</text>
       <text x="65" y="92" fill={lv.col} fontSize="6" fontWeight="bold" fontFamily="monospace">{lv.combos}</text>
       <rect x="130" y="68" width="80" height="32" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
-      <text x="135" y="79" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Crack time:</text>
+      <text x="135" y="79" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">Crack time:</text>
       <text x="135" y="92" fill={lv.col} fontSize="6" fontWeight="bold" fontFamily="monospace">
         {phase === 0 ? '< 1 sec' : phase === 1 ? '~5 min' : phase === 2 ? '~2 yrs' : '1000+ yrs'}
       </text>
@@ -1895,9 +1895,9 @@ function ClassDatasetSVG({ c, p }) {
       {/* Data rows */}
       {people.slice(0, Math.min(added, people.length)).map((pr, i) => (
         <motion.g key={`row-${i}`} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
-          <text x="95" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.name}</text>
-          <text x="145" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.age}</text>
-          <text x="195" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.fav}</text>
+          <text x="95" y={40 + i * 12} textAnchor="middle" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">{pr.name}</text>
+          <text x="145" y={40 + i * 12} textAnchor="middle" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">{pr.age}</text>
+          <text x="195" y={40 + i * 12} textAnchor="middle" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">{pr.fav}</text>
         </motion.g>
       ))}
       {/* Counter */}
@@ -1936,7 +1936,7 @@ function ValidationRulesSVG({ c, p }) {
             <rect x="15" y={20 + i * 17} width="90" height="13" rx="3"
               fill={checked ? (e.ok ? '#3fb950' : '#f85149') : c} fillOpacity={checked ? 0.08 : 0.03}
               stroke={checked ? (e.ok ? '#3fb950' : '#f85149') : c} strokeOpacity={checked ? 0.3 : 0.06} strokeWidth="0.7" />
-            <text x="20" y={29 + i * 17} fill={checked ? (e.ok ? '#3fb950' : '#f85149') : 'var(--theme-muted)'} fontSize="5" fontFamily="monospace">{e.val}</text>
+            <text x="20" y={29 + i * 17} fill={checked ? (e.ok ? '#3fb950' : '#f85149') : 'var(--theme-body)'} fontSize="5" fontFamily="monospace">{e.val}</text>
             {/* Shield icon */}
             {checked && (
               <motion.text x="112" y={30 + i * 17} fill={e.ok ? '#3fb950' : '#f85149'} fontSize="8" fontWeight="bold"
@@ -1946,7 +1946,7 @@ function ValidationRulesSVG({ c, p }) {
             )}
             {/* Rule label */}
             <rect x="125" y={20 + i * 17} width="100" height="13" rx="3" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.05} />
-            <text x="130" y={29 + i * 17} fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">🛡 {e.rule}</text>
+            <text x="130" y={29 + i * 17} fill="var(--theme-body)" fontSize="5" fontFamily="monospace">🛡 {e.rule}</text>
           </g>
         );
       })}
@@ -1985,7 +1985,7 @@ function MisleadingGraphsSVG({ c, p }) {
         return (
           <g key={tick}>
             <line x1={ox - 3} y1={y} x2={ox} y2={y} stroke={c} strokeOpacity={0.1} />
-            <text x={ox - 6} y={y + 2} textAnchor="end" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">{tick}</text>
+            <text x={ox - 6} y={y + 2} textAnchor="end" fill="var(--theme-body)" fontSize="4.5" fontFamily="monospace">{tick}</text>
             <line x1={ox} y1={y} x2={ox + 160} y2={y} stroke={c} strokeOpacity={0.03} strokeDasharray="2,3" />
           </g>
         );
@@ -2002,7 +2002,7 @@ function MisleadingGraphsSVG({ c, p }) {
               fill={honest ? '#3fb950' : '#f85149'} fillOpacity={0.25}
               stroke={honest ? '#3fb950' : '#f85149'} strokeOpacity={0.4} strokeWidth="0.7"
               animate={{ height: barH, y: oy - barH }} transition={{ duration: 0.6 }} />
-            <text x={x + barW / 2} y={oy + 8} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{d.label}</text>
+            <text x={x + barW / 2} y={oy + 8} textAnchor="middle" fill="var(--theme-body)" fontSize="5" fontFamily="monospace">{d.label}</text>
             <text x={x + barW / 2} y={oy - barH - 3} textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">{d.val}</text>
           </g>
         );
@@ -2013,7 +2013,7 @@ function MisleadingGraphsSVG({ c, p }) {
       <text x="202" y="36" textAnchor="middle" fill={honest ? '#3fb950' : '#f85149'} fontSize="5.5" fontWeight="bold" fontFamily="monospace">
         {honest ? 'Y: 0-100' : 'Y: 80-100'}
       </text>
-      <text x="202" y="55" textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">
+      <text x="202" y="55" textAnchor="middle" fill="var(--theme-body)" fontSize="4.5" fontFamily="monospace">
         {honest ? 'True scale' : 'Truncated!'}
       </text>
     </svg>
@@ -2645,7 +2645,7 @@ function ShortestPathSVG({ c, p }) {
             <line x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]}
               stroke={lit ? c : c} strokeOpacity={lit ? 0.55 : 0.1} strokeWidth={lit ? 2 : 0.8} />
             <text x={(nodes[a][0] + nodes[b][0]) / 2 + 3} y={(nodes[a][1] + nodes[b][1]) / 2 - 3}
-              fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{w}</text>
+              fill="var(--theme-body)" fontSize="5" fontFamily="monospace">{w}</text>
           </g>
         );
       })}
@@ -2892,7 +2892,7 @@ export function DurationTimeline({ procedure, stream }) {
           return (
             <div key={i} title={`${s.title}: ${s.duration} min`}
               className="h-full relative group flex items-center justify-center text-[9px] font-bold font-mono"
-              style={{ width: `${pct}%`, backgroundColor: c, opacity: op, color: 'var(--theme-invert)', minWidth: pct > 5 ? 0 : 14 }}>
+              style={{ width: `${pct}%`, backgroundColor: c, opacity: op, color: '#fff', minWidth: pct > 5 ? 0 : 14 }}>
               {pct > 10 && <span>{s.duration}m</span>}
             </div>
           );
@@ -2904,7 +2904,7 @@ export function DurationTimeline({ procedure, stream }) {
           return (
             <div key={i} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-[3px]" style={{ backgroundColor: c, opacity: op }} />
-              <span className="text-[10px] text-muted">{s.title} ({s.duration}m)</span>
+              <span className="text-[10px] text-body">{s.title} ({s.duration}m)</span>
             </div>
           );
         })}
@@ -2991,7 +2991,7 @@ export function StatsAtGlance({ activity }) {
       {items.map(item => (
         <div key={item.label} className="p-2 rounded-[8px] bg-surface glass-card border border-edge text-center">
           <p className="text-base font-bold font-mono" style={{ color: c }}>{item.value}</p>
-          <p className="text-[9px] text-muted uppercase tracking-[0.04em]">{item.label}</p>
+          <p className="text-[9px] text-body uppercase tracking-[0.04em]">{item.label}</p>
         </div>
       ))}
     </div>
@@ -3018,10 +3018,10 @@ export function ProcedureFlowDiagram({ procedure, stream }) {
             <div key={i} className="flex items-center flex-shrink-0 min-w-[90px]">
               <div className="flex flex-col items-center w-full px-1">
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold font-mono mb-0.5"
-                  style={{ backgroundColor: c, color: 'var(--theme-invert)', opacity: 0.8 }}>
+                  style={{ backgroundColor: c, color: '#fff', opacity: 0.8 }}>
                   {s.step}
                 </div>
-                <span className="text-[9px] text-muted text-center leading-tight">{s.title}</span>
+                <span className="text-[9px] text-body text-center leading-tight">{s.title}</span>
                 <span className="text-[8px] font-mono mt-0.5" style={{ color: c, opacity: 0.6 }}>{s.duration}m</span>
               </div>
               {i < procedure.length - 1 && (
@@ -3083,7 +3083,7 @@ export function FacilitationGantt({ facilitationScript, totalDuration, stream })
           const op = 0.25 + (i / (segs.length - 1 || 1)) * 0.5;
           return (
             <div key={i} className="flex items-center gap-3">
-              <span className="flex-shrink-0 w-16 text-[10px] font-mono text-muted text-right">{seg.time}</span>
+              <span className="flex-shrink-0 w-16 text-[10px] font-mono text-body text-right">{seg.time}</span>
               <div className="flex-1 h-5 rounded-full overflow-hidden bg-surface-raised relative">
                 <div className="absolute h-full rounded-full flex items-center px-1.5"
                   style={{ left: `${(seg.start / totalDuration) * 100}%`, width: `${seg.w}%`, backgroundColor: c, opacity: op, minWidth: 20 }} />
@@ -3094,7 +3094,7 @@ export function FacilitationGantt({ facilitationScript, totalDuration, stream })
       </div>
       <div className="flex justify-between mt-2 px-[76px]">
         {[0, Math.round(totalDuration / 4), Math.round(totalDuration / 2), Math.round(3 * totalDuration / 4), totalDuration].map(m => (
-          <span key={m} className="text-[9px] text-muted font-mono">{m}m</span>
+          <span key={m} className="text-[9px] text-body font-mono">{m}m</span>
         ))}
       </div>
     </div>
@@ -3128,7 +3128,7 @@ export function RubricChart({ rubricSnapshot }) {
               <div className="h-3 rounded-full bg-surface-raised overflow-hidden mb-1">
                 <div className="h-full rounded-full transition-all duration-500" style={{ width: `${cfg.pct}%`, backgroundColor: cfg.colour, opacity: 0.6 }} />
               </div>
-              <p className="text-[10px] text-muted leading-snug">{desc}</p>
+              <p className="text-[10px] text-body leading-snug">{desc}</p>
             </div>
           );
         })}
@@ -3156,7 +3156,7 @@ export function LearningJourneyMap({ learningOutcomes, stream }) {
               <div key={i} className="flex items-start gap-3 relative">
                 <div className="flex-shrink-0 relative z-10">
                   <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center text-[11px] font-bold font-mono"
-                    style={{ backgroundColor: c, color: 'var(--theme-invert)', opacity: 0.15 + (prog / 100) * 0.7 }}>
+                    style={{ backgroundColor: c, color: '#fff', opacity: 0.15 + (prog / 100) * 0.7 }}>
                     {i + 1}
                   </div>
                 </div>
@@ -3190,7 +3190,7 @@ export function MaterialsVisualGrid({ materials, stream }) {
         {materials.map((m, i) => (
           <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-[8px] bg-surface-raised border border-edge group">
             <div className="flex-shrink-0 w-6 h-6 rounded-[6px] flex items-center justify-center text-[10px] font-bold font-mono mt-0.5"
-              style={{ backgroundColor: c, color: 'var(--theme-invert)', opacity: 0.7 }}>
+              style={{ backgroundColor: c, color: '#fff', opacity: 0.7 }}>
               {i + 1}
             </div>
             <span className="text-[11.5px] text-body leading-snug">{m}</span>
@@ -3234,12 +3234,12 @@ export function EngagementCurve({ procedure, stream }) {
           return (
             <g key={i}>
               <circle cx={x} cy={y} r="3" fill={c} opacity="0.7" />
-              <text x={x} y={h - 1} textAnchor="middle" fill="var(--theme-muted)" fontSize="6.5" fontFamily="Inter, sans-serif">S{i + 1}</text>
+              <text x={x} y={h - 1} textAnchor="middle" fill="var(--theme-body)" fontSize="6.5" fontFamily="Inter, sans-serif">S{i + 1}</text>
             </g>
           );
         })}
-        <text x={px - 3} y={py + 3} textAnchor="end" fill="var(--theme-muted)" fontSize="6">High</text>
-        <text x={px - 3} y={py + ph} textAnchor="end" fill="var(--theme-muted)" fontSize="6">Low</text>
+        <text x={px - 3} y={py + 3} textAnchor="end" fill="var(--theme-body)" fontSize="6">High</text>
+        <text x={px - 3} y={py + ph} textAnchor="end" fill="var(--theme-body)" fontSize="6">Low</text>
       </svg>
     </div>
   );
@@ -3262,7 +3262,7 @@ export function TipsVisual({ tips, stream }) {
           </span>
           <div className="relative flex items-start gap-2.5">
             <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold font-mono"
-              style={{ backgroundColor: c, color: 'var(--theme-invert)', opacity: 0.7 }}>
+              style={{ backgroundColor: c, color: '#fff', opacity: 0.7 }}>
               {i + 1}
             </div>
             <p className="text-[12px] text-body leading-relaxed pt-0.5">{tip}</p>
@@ -3297,7 +3297,7 @@ export function MisconceptionsDiagram({ misconceptions }) {
           );
         })}
       </div>
-      <div className="flex justify-between text-[9px] text-muted">
+      <div className="flex justify-between text-[9px] text-body">
         <span>Most common</span>
         <span>Less common</span>
       </div>

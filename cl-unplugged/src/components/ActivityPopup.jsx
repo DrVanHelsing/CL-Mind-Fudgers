@@ -219,7 +219,7 @@ function Callout({ tag, children, variant = 'accent' }) {
   return (
     <div className={`p-3 rounded-[6px] border-l-[3px] bg-surface border border-edge ${styles[variant]}`}>
       {tag && <span className={`block text-[10px] font-bold uppercase tracking-[0.05em] mb-0.5 ${tagColor[variant]}`}>{tag}</span>}
-      <div className="text-[12px] text-muted leading-relaxed">{children}</div>
+      <div className="text-[12px] text-body leading-relaxed">{children}</div>
     </div>
   );
 }
@@ -303,7 +303,7 @@ function OverviewTab({ activity }) {
             {activity.variations.map((v, i) => (
                 <div key={i} className="p-4 rounded-[10px] transition-all duration-150 bg-surface glass-card border border-edge">
                 <h4 className="text-[14px] font-semibold text-heading mb-1">{v.name}</h4>
-                <p className="text-[12px] text-muted leading-relaxed">{v.description}</p>
+                <p className="text-[12px] text-body leading-relaxed">{v.description}</p>
               </div>
             ))}
           </div>
