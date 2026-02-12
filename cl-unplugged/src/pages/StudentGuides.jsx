@@ -43,11 +43,11 @@ export default function StudentGuides() {
 
   return (
     <section className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-        <div className="mb-8 glass-panel-soft p-5">
-          <h1 className="text-2xl font-bold text-heading flex items-center gap-2 mb-2">
-            <GraduationCap className="w-6 h-6 text-accent" /> Student Guides
+        <div className="mb-5 glass-panel-soft p-4">
+          <h1 className="text-xl font-bold text-heading flex items-center gap-2 mb-1">
+            <GraduationCap className="w-5 h-5 text-accent" /> Student Guides
           </h1>
           <p className="text-sm text-body max-w-2xl">
             Focused guide explorer: pick an activity card and open a full-screen student guide view with visuals,
@@ -55,7 +55,7 @@ export default function StudentGuides() {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 glass-panel-soft p-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 mb-5 glass-panel-soft p-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
             <input
@@ -112,7 +112,7 @@ export default function StudentGuides() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+                  <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                     {acts.map((a) => (
                       <button
                         key={a.id}

@@ -83,7 +83,7 @@ export default function About() {
             <h2 className="text-xl font-bold text-heading mb-2">The Unplugged Advantage</h2>
             <p className="text-body text-sm max-w-md mx-auto">Research-backed reasons hands-on learning outperforms screen-first approaches.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {benefits.map((b, i) => {
               const Icon = b.icon;
               return (
@@ -93,9 +93,9 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className="p-5 rounded-[10px] glass-element"
+                  className="p-5 rounded-[10px] glass-element text-center"
                 >
-                  <div className="w-9 h-9 rounded-[10px] bg-accent-dim border border-accent-subtle text-accent flex items-center justify-center mb-3">
+                  <div className="w-9 h-9 rounded-[10px] bg-accent-dim border border-accent-subtle text-accent flex items-center justify-center mb-3 mx-auto">
                     <Icon className="w-4 h-4" />
                   </div>
                   <h3 className="text-[14px] font-bold text-heading mb-1">{b.title}</h3>
@@ -111,11 +111,12 @@ export default function About() {
       {/* ── PEDAGOGICAL PRINCIPLES ──── */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="glass-panel-soft p-6 sm:p-8">
           <div className="text-center mb-10">
             <h2 className="text-xl font-bold text-heading mb-2">Pedagogical Foundations</h2>
             <p className="text-body text-sm max-w-md mx-auto">Every activity is designed around proven educational theories.</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-3.5 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
             {principles.map((p, i) => (
               <motion.div
                 key={p.title}
@@ -130,6 +131,7 @@ export default function About() {
                 <p className="text-[12.5px] text-body leading-relaxed">{p.text}</p>
               </motion.div>
             ))}
+          </div>
           </div>
         </div>
       </section>
@@ -179,6 +181,7 @@ export default function About() {
       {/* ── CTA ────────────────────────── */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-panel-soft p-6 sm:p-8">
           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-xl font-bold text-heading mb-3">Get Started Today</h2>
             <p className="text-body text-sm max-w-md mx-auto mb-8">Browse activities, print student guides, and run your first unplugged session.</p>
@@ -203,6 +206,7 @@ export default function About() {
               </Link>
             </div>
           </motion.div>
+          </div>
         </div>
       </section>
     </div>

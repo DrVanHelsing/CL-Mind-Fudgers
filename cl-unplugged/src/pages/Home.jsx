@@ -115,12 +115,13 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="glass-panel-soft p-6 sm:p-8">
-          <div className="text-center mb-12">
+
+          <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-heading mb-3">Three Learning Streams</h2>
             <p className="text-body text-sm max-w-md mx-auto">Each stream targets a different foundational literacy — all taught through engaging, hands-on activities.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-3">
             {streamCards.map((s, i) => {
               const Icon = s.icon;
               const count = activities.filter((a) => a.stream === s.id).length;
@@ -156,12 +157,13 @@ export default function Home() {
       {/* ── HOW IT WORKS ───────────────── */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="glass-panel-soft p-6 sm:p-8">
+          <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-heading mb-3">How It Works</h2>
             <p className="text-body text-sm max-w-md mx-auto">Four simple steps from choosing an activity to embedding reflective practice.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {steps.map((step, i) => {
               const Icon = step.icon;
               return (
@@ -182,6 +184,7 @@ export default function Home() {
                 </motion.div>
               );
             })}
+          </div>
           </div>
         </div>
       </section>

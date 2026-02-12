@@ -38,7 +38,7 @@ function AnimCtrl({ children, title, className = '' }) {
 
   return (
     <div className={`rounded-[10px] glass-element overflow-hidden ${className}`}>
-      <div className="flex items-center justify-between px-3 py-1.5 border-b border-edge glass-inset rounded-none">
+      <div className="flex items-center justify-between px-3 py-1 border-b border-edge glass-inset rounded-none">
         <span className="text-[10px] font-bold text-muted uppercase tracking-[0.06em]">{title}</span>
         <div className="flex items-center gap-1">
           <button
@@ -57,7 +57,7 @@ function AnimCtrl({ children, title, className = '' }) {
           </button>
         </div>
       </div>
-      <div className="p-3">
+      <div className="p-2">
         <AnimatePresence mode="wait">
           <motion.div key={key}>
             {typeof children === 'function' ? children(playing) : children}
@@ -99,9 +99,9 @@ export function HeroIllustration({ heroGraphic, stream, className = '' }) {
   const compactGraphics = new Set(['number-line', 'ratio-scaling', 'probability-tokens', 'graph-matching', 'sampling-bias']);
   const mediumGraphics = new Set(['sorting-network', 'instruction-flow', 'argument-reconstruction', 'source-credibility']);
 
-  let maxW = '920px';
-  if (compactGraphics.has(heroGraphic)) maxW = '760px';
-  else if (mediumGraphics.has(heroGraphic)) maxW = '840px';
+  let maxW = '320px';
+  if (compactGraphics.has(heroGraphic)) maxW = '260px';
+  else if (mediumGraphics.has(heroGraphic)) maxW = '290px';
 
   return (
     <AnimCtrl title={cfg.label} className={className}>
@@ -109,8 +109,8 @@ export function HeroIllustration({ heroGraphic, stream, className = '' }) {
         <div className="relative w-full mx-auto" style={{ maxWidth: maxW }}>
           <HeroSVG type={heroGraphic} c={c} playing={playing} />
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-11 h-11 rounded-[12px] bg-panel glass-card border border-edge flex items-center justify-center" style={{ color: c }}>
-              <cfg.Icon className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-[10px] bg-panel glass-card border border-edge flex items-center justify-center" style={{ color: c }}>
+              <cfg.Icon className="w-4 h-4" />
             </div>
           </div>
         </div>
@@ -961,7 +961,7 @@ export function SkillsRadar({ skills, stream }) {
   return (
     <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
       <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2 text-center">Skills Coverage</h4>
-      <svg viewBox="0 0 200 195" className="w-full max-w-[260px] mx-auto">
+      <svg viewBox="0 0 200 195" className="w-full max-w-[200px] mx-auto">
         {rings.map(ring => (
           <polygon key={ring} points={skills.map((_, i) => {
             const a = -Math.PI / 2 + i * step;
@@ -997,9 +997,9 @@ export function SkillsRadar({ skills, stream }) {
 function SkillsBar({ skills, stream }) {
   const c = streamColor(stream);
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Skills Coverage</h4>
-      <div className="space-y-2">
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Skills Coverage</h4>
+      <div className="space-y-1.5">
         {skills.map(s => {
           let h = 0;
           for (let j = 0; j < s.length; j++) h = ((h << 5) - h + s.charCodeAt(j)) | 0;
@@ -1031,9 +1031,9 @@ export function DurationTimeline({ procedure, stream }) {
   if (total === 0) return null;
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Time Distribution</h4>
-      <div className="flex items-center h-6 rounded-full overflow-hidden bg-surface-raised mb-3">
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Time Distribution</h4>
+      <div className="flex items-center h-5 rounded-full overflow-hidden bg-surface-raised mb-2">
         {procedure.map((s, i) => {
           const pct = ((s.duration || 0) / total) * 100;
           if (pct === 0) return null;
@@ -1071,8 +1071,8 @@ export function DifficultyMeter({ difficulty }) {
   const levels = ['Beginner', 'Intermediate', 'Advanced'];
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Difficulty Level</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Difficulty Level</h4>
       <div className="flex items-center gap-1.5 mb-2">
         {levels.map(lvl => {
           const lc = DIFF_CFG[lvl];
@@ -1108,8 +1108,8 @@ export function GroupSizeVisual({ groupSize, stream }) {
   const max = parts[1] || parts[0] || 4;
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Group Size</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Group Size</h4>
       <div className="flex items-end gap-1 justify-center mb-2">
         {Array.from({ length: Math.min(max, 20) }).map((_, i) => (
           <User key={i} className="transition-all" style={{ width: 14, height: 14, color: c, opacity: i < min ? 0.8 : 0.3 }} />
@@ -1136,11 +1136,11 @@ export function StatsAtGlance({ activity }) {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-1.5">
       {items.map(item => (
-        <div key={item.label} className="p-3 rounded-[10px] bg-surface glass-card border border-edge text-center">
-          <p className="text-lg font-bold font-mono" style={{ color: c }}>{item.value}</p>
-          <p className="text-[10px] text-muted uppercase tracking-[0.04em]">{item.label}</p>
+        <div key={item.label} className="p-2 rounded-[8px] bg-surface glass-card border border-edge text-center">
+          <p className="text-base font-bold font-mono" style={{ color: c }}>{item.value}</p>
+          <p className="text-[9px] text-muted uppercase tracking-[0.04em]">{item.label}</p>
         </div>
       ))}
     </div>
@@ -1156,17 +1156,17 @@ export function ProcedureFlowDiagram({ procedure, stream }) {
   const dense = procedure.length > 6;
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4 mb-5">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Procedure Overview</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3 mb-4">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Procedure Overview</h4>
       <div className={dense ? 'overflow-x-auto pb-1' : ''}>
         <div
           className="flex items-center gap-0"
           style={!dense ? { display: 'grid', gridTemplateColumns: `repeat(${procedure.length}, minmax(0, 1fr))`, width: '100%' } : {}}
         >
           {procedure.map((s, i) => (
-            <div key={i} className="flex items-center flex-shrink-0 min-w-[110px]">
-              <div className="flex flex-col items-center w-full px-2">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold font-mono mb-1"
+            <div key={i} className="flex items-center flex-shrink-0 min-w-[90px]">
+              <div className="flex flex-col items-center w-full px-1">
+                <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold font-mono mb-0.5"
                   style={{ backgroundColor: c, color: 'var(--theme-invert)', opacity: 0.8 }}>
                   {s.step}
                 </div>
@@ -1225,15 +1225,15 @@ export function FacilitationGantt({ facilitationScript, totalDuration, stream })
   }, [facilitationScript, totalDuration]);
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Session Timeline</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Session Timeline</h4>
       <div className="space-y-2">
         {segs.map((seg, i) => {
           const op = 0.25 + (i / (segs.length - 1 || 1)) * 0.5;
           return (
             <div key={i} className="flex items-center gap-3">
               <span className="flex-shrink-0 w-16 text-[10px] font-mono text-muted text-right">{seg.time}</span>
-              <div className="flex-1 h-4 rounded-full overflow-hidden bg-surface-raised relative">
+              <div className="flex-1 h-5 rounded-full overflow-hidden bg-surface-raised relative">
                 <div className="absolute h-full rounded-full flex items-center px-1.5"
                   style={{ left: `${(seg.start / totalDuration) * 100}%`, width: `${seg.w}%`, backgroundColor: c, opacity: op, minWidth: 20 }} />
               </div>
@@ -1263,8 +1263,8 @@ const rubricLevelCfg = {
 
 export function RubricChart({ rubricSnapshot }) {
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Assessment Levels</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Assessment Levels</h4>
       <div className="space-y-3">
         {Object.entries(rubricSnapshot).map(([level, desc]) => {
           const cfg = rubricLevelCfg[level] || rubricLevelCfg.good;
@@ -1274,7 +1274,7 @@ export function RubricChart({ rubricSnapshot }) {
                 <span className="text-[11px] font-semibold capitalize" style={{ color: cfg.colour }}>{level}</span>
                 <span className="text-[10px] text-muted font-mono">{cfg.pct}%</span>
               </div>
-              <div className="h-2 rounded-full bg-surface-raised overflow-hidden mb-1">
+              <div className="h-3 rounded-full bg-surface-raised overflow-hidden mb-1">
                 <div className="h-full rounded-full transition-all duration-500" style={{ width: `${cfg.pct}%`, backgroundColor: cfg.colour, opacity: 0.6 }} />
               </div>
               <p className="text-[10px] text-muted leading-snug">{desc}</p>
@@ -1294,8 +1294,8 @@ export function LearningJourneyMap({ learningOutcomes, stream }) {
   const c = streamColor(stream);
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Your Learning Journey</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Your Learning Journey</h4>
       <div className="relative">
         <div className="absolute left-[15px] top-3 bottom-3 w-px" style={{ backgroundColor: c, opacity: 0.15 }} />
         <div className="space-y-3">
@@ -1333,8 +1333,8 @@ export function MaterialsVisualGrid({ materials, stream }) {
   const c = streamColor(stream);
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-3">Materials Checklist</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Materials Checklist</h4>
       <div className="grid grid-cols-2 gap-2">
         {materials.map((m, i) => (
           <div key={i} className="flex items-start gap-2.5 p-2.5 rounded-[8px] bg-surface-raised border border-edge group">
@@ -1369,8 +1369,8 @@ export function EngagementCurve({ procedure, stream }) {
   const area = `${px},${py + ph} ${pts} ${px + pw},${py + ph}`;
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4">
-      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Expected Engagement</h4>
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
+      <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-1.5">Expected Engagement</h4>
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full">
         {[0.25, 0.5, 0.75].map(g => (
           <line key={g} x1={px} y1={py + ph - g * ph} x2={px + pw} y2={py + ph - g * ph} stroke="var(--theme-edge)" strokeWidth="1" />
@@ -1431,12 +1431,12 @@ export function MisconceptionsDiagram({ misconceptions }) {
   const total = misconceptions.length;
 
   return (
-    <div className="rounded-[10px] bg-surface glass-card border border-edge p-4 mb-1">
+    <div className="rounded-[10px] bg-surface glass-card border border-edge p-3 mb-1">
       <div className="flex items-center justify-between mb-3">
         <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em]">Risk Distribution</h4>
         <span className="text-[10px] font-mono text-warning">{total} identified</span>
       </div>
-      <div className="flex items-end gap-1.5 h-12 mb-1">
+      <div className="flex items-end gap-1.5 h-20 mb-1">
         {misconceptions.map((_, i) => {
           const sev = 1 - (i / total) * 0.5;
           return (

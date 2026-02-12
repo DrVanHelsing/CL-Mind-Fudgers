@@ -40,14 +40,14 @@ export default function Activities() {
 
   return (
     <section className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
         {/* Header */}
-        <div className="mb-8 glass-panel-soft p-5">
-          <h1 className="text-2xl font-bold text-heading flex items-center gap-2 mb-2">
-            <Layers className="w-6 h-6 text-accent" /> Activity Library
+        <div className="mb-5 glass-panel-soft p-4">
+          <h1 className="text-xl font-bold text-heading flex items-center gap-2 mb-1">
+            <Layers className="w-5 h-5 text-accent" /> Activity Library
           </h1>
-          <p className="text-sm text-body">Browse, filter, and explore all unplugged activities.</p>
+          <p className="text-[13px] text-body">Browse, filter, and explore all unplugged activities.</p>
         </div>
 
         <FilterBar
@@ -61,7 +61,7 @@ export default function Activities() {
 
         {/* Grid */}
         {filtered.length > 0 ? (
-          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-5">
+          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
             <AnimatePresence>
               {filtered.map((a, i) => (
                 <ActivityCard key={a.id} activity={a} index={i} onClick={() => setSelectedActivity(a)} />

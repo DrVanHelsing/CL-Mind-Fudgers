@@ -63,56 +63,56 @@
 /* ── Light theme overrides ──────────── */
 [data-theme="light"] {
   --theme-base: #f6f8fa;
-  --theme-panel: rgba(255, 255, 255, 0.60);
-  --theme-surface: rgba(0, 0, 0, 0.03);
-  --theme-surface-hover: rgba(0, 0, 0, 0.05);
-  --theme-surface-raised: rgba(0, 0, 0, 0.06);
-  --theme-surface-bright: rgba(0, 0, 0, 0.08);
-  --theme-edge: rgba(31, 35, 40, 0.08);
-  --theme-edge-hover: rgba(31, 35, 40, 0.15);
-  --theme-edge-strong: rgba(31, 35, 40, 0.20);
-  --theme-divider: rgba(31, 35, 40, 0.08);
+  --theme-panel: #ffffff;
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f8f9fb;
+  --theme-surface-raised: #f0f1f3;
+  --theme-surface-bright: #e8eaed;
+  --theme-edge: #d1d5db;
+  --theme-edge-hover: #b0b7c3;
+  --theme-edge-strong: #9ca3af;
+  --theme-divider: #e5e7eb;
   --theme-heading: #1f2328;
-  --theme-body: #656d76;
-  --theme-muted: #8b949e;
+  --theme-body: #4b5563;
+  --theme-muted: #6b7280;
   --theme-invert: #ffffff;
   --theme-accent: #0969da;
-  --theme-accent-dim: rgba(9, 105, 218, 0.12);
-  --theme-accent-subtle: rgba(9, 105, 218, 0.20);
+  --theme-accent-dim: #eff6ff;
+  --theme-accent-subtle: #dbeafe;
   --theme-accent-muted: rgba(9, 105, 218, 0.55);
   --theme-cl: #0969da;
-  --theme-cl-dim: rgba(9, 105, 218, 0.10);
-  --theme-cl-subtle: rgba(9, 105, 218, 0.18);
-  --theme-al: #8250df;
-  --theme-al-dim: rgba(130, 80, 223, 0.10);
-  --theme-al-subtle: rgba(130, 80, 223, 0.18);
-  --theme-ql: #1a7f37;
-  --theme-ql-dim: rgba(26, 127, 55, 0.10);
-  --theme-ql-subtle: rgba(26, 127, 55, 0.18);
-  --theme-success: #1a7f37;
-  --theme-success-dim: rgba(26, 127, 55, 0.10);
-  --theme-warning: #9a6700;
-  --theme-warning-dim: rgba(154, 103, 0, 0.10);
-  --theme-danger: #cf222e;
-  --theme-danger-dim: rgba(207, 34, 46, 0.10);
-  --theme-shadow-modal: 0 16px 64px rgba(0, 0, 0, 0.15);
-  --theme-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --theme-shadow-glow: 0 0 40px rgba(9, 105, 218, 0.06);
-  --theme-glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.20) 50%, transparent 100%);
-  --theme-overlay-bg: rgba(255, 255, 255, 0.50);
-  --theme-overlay-blur: 8px;
-  --theme-glass-blur-heavy: 20px;
-  --theme-glass-blur-medium: 12px;
+  --theme-cl-dim: #eff6ff;
+  --theme-cl-subtle: #dbeafe;
+  --theme-al: #7c3aed;
+  --theme-al-dim: #f5f3ff;
+  --theme-al-subtle: #ede9fe;
+  --theme-ql: #16a34a;
+  --theme-ql-dim: #f0fdf4;
+  --theme-ql-subtle: #dcfce7;
+  --theme-success: #16a34a;
+  --theme-success-dim: #f0fdf4;
+  --theme-warning: #ca8a04;
+  --theme-warning-dim: #fefce8;
+  --theme-danger: #dc2626;
+  --theme-danger-dim: #fef2f2;
+  --theme-shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --theme-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --theme-shadow-glow: none;
+  --theme-glass-highlight: none;
+  --theme-overlay-bg: rgba(0, 0, 0, 0.35);
+  --theme-overlay-blur: 0px;
+  --theme-glass-blur-heavy: 0px;
+  --theme-glass-blur-medium: 0px;
   --theme-scrollbar-thumb: rgba(0, 0, 0, 0.12);
   --theme-scrollbar-hover: rgba(0, 0, 0, 0.22);
   --theme-focus-ring: #0969da;
-  --theme-bg-glow-1: rgba(9, 105, 218, 0.06);
-  --theme-bg-glow-2: rgba(130, 80, 223, 0.05);
-  --theme-bg-glow-3: rgba(26, 127, 55, 0.04);
-  --theme-sci-cl: rgba(9, 105, 218, 0.38);
-  --theme-sci-al: rgba(130, 80, 223, 0.38);
-  --theme-sci-ql: rgba(26, 127, 55, 0.35);
-  --theme-sci-accent: rgba(9, 105, 218, 0.32);
+  --theme-bg-glow-1: transparent;
+  --theme-bg-glow-2: transparent;
+  --theme-bg-glow-3: transparent;
+  --theme-sci-cl: rgba(9, 105, 218, 0.18);
+  --theme-sci-al: rgba(124, 58, 237, 0.16);
+  --theme-sci-ql: rgba(22, 163, 74, 0.14);
+  --theme-sci-accent: rgba(9, 105, 218, 0.14);
 }
 
 @theme {
@@ -352,6 +352,93 @@ body {
   border-radius: 10px;
   backdrop-filter: blur(var(--theme-glass-blur-medium));
   -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+}
+
+/* ── Light-mode solid overrides ─────── */
+[data-theme="light"] .glass,
+[data-theme="light"] .glass-card {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--theme-shadow-card);
+}
+[data-theme="light"] .glass::before,
+[data-theme="light"] .glass-panel::before,
+[data-theme="light"] .glass-panel-soft::before {
+  display: none;
+}
+[data-theme="light"] .glass-panel {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--theme-divider);
+  box-shadow: var(--theme-shadow-card);
+}
+[data-theme="light"] .glass-element {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+[data-theme="light"] .glass-element:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+[data-theme="light"] .glass-card {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+[data-theme="light"] .glass-panel-soft {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--theme-divider);
+  box-shadow: var(--theme-shadow-card);
+}
+[data-theme="light"] .glass-popup {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--theme-shadow-modal);
+}
+[data-theme="light"] .glass-popup-element {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: #e5e7eb;
+}
+[data-theme="light"] .glass-popup-element:hover {
+  background: #f9fafb;
+}
+[data-theme="light"] .glass-pill {
+  background: #f0f1f3;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: #e5e7eb;
+}
+[data-theme="light"] .glass-inset {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: #e5e7eb;
+}
+[data-theme="light"] .glass-nav {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-theme="light"] .glass-overlay {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+[data-theme="light"] .bg-orb {
+  display: none;
 }
 
 /* ── Background decoration orbs ──────── */

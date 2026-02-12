@@ -101,7 +101,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           onClick={(e) => e.target === e.currentTarget && onClose()}
-          className="fixed inset-0 z-[9000] flex items-center justify-center glass-overlay p-2 sm:p-3"
+          className="fixed inset-0 z-[9000] flex items-center justify-center glass-overlay p-3 sm:p-4"
         >
           <motion.div
             ref={popupRef}
@@ -109,13 +109,13 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="w-[98vw] h-[96vh] max-w-none max-h-none flex flex-col glass-popup border border-divider rounded-[18px] shadow-modal overflow-hidden"
+            className="w-[96vw] max-w-6xl h-[calc(100vh-2rem)] sm:h-[calc(100vh-3rem)] flex flex-col glass-popup border border-divider rounded-[14px] shadow-modal overflow-hidden"
           >
             {/* ── Thin stream colour bar ─── */}
             <div className={`h-0.5 flex-shrink-0 bg-gradient-to-r ${topGradient[activity.stream]}`} />
 
             {/* ── Header ────────────────── */}
-            <div className="flex items-start justify-between gap-4 px-6 pt-[18px] pb-[14px] border-b border-divider glass-popup-element">
+            <div className="flex items-start justify-between gap-3 px-4 pt-3.5 pb-3 border-b border-divider bg-surface glass-card rounded-t-[13px]">
               <div className="flex items-start gap-3 min-w-0">
                 <div className={`w-10 h-10 rounded-[10px] border flex-shrink-0 flex items-center justify-center ${streamIcon[activity.stream]}`}>
                   <Target className="w-5 h-5" />
@@ -140,17 +140,17 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
                 </div>
               </div>
               <div className="flex items-center gap-1 flex-shrink-0 no-print">
-                <button onClick={() => window.print()} className="w-8 h-8 rounded-lg glass-popup-element flex items-center justify-center text-muted hover:text-body transition-all" title="Print">
+                <button onClick={() => window.print()} className="w-8 h-8 rounded-lg bg-surface glass-card border border-edge flex items-center justify-center text-muted hover:text-body transition-all" title="Print">
                   <Printer className="w-4 h-4" />
                 </button>
-                <button onClick={onClose} className="w-8 h-8 rounded-lg glass-popup-element flex items-center justify-center text-muted hover:bg-danger-dim hover:text-danger transition-all">
+                <button onClick={onClose} className="w-8 h-8 rounded-lg bg-surface glass-card border border-edge flex items-center justify-center text-muted hover:bg-danger-dim hover:text-danger transition-all">
                   <X className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
             {/* ── Tabs ──────────────────── */}
-            <div className="flex gap-0.5 px-6 border-b border-divider glass-popup-element no-print flex-shrink-0">
+            <div className="flex gap-0.5 px-4 border-b border-divider bg-surface glass-card no-print flex-shrink-0">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const on = activeTab === tab.id;
@@ -158,7 +158,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1.5 px-[18px] py-3 text-[13px] font-medium border-b-2 whitespace-nowrap transition-all duration-150 ${
+                    className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[12px] font-medium border-b-2 whitespace-nowrap transition-all duration-150 ${
                       on
                         ? 'text-accent border-accent'
                         : 'text-body border-transparent hover:text-heading'
@@ -172,7 +172,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
             </div>
 
             {/* ── Content ───────────────── */}
-            <div className="flex-1 overflow-y-auto px-6 py-5 md:px-7 md:py-6">
+            <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5">
               <AnimatePresence mode="wait">
                 {activeTab === 'overview'  && <OverviewTab  key="o" activity={activity} />}
                 {activeTab === 'procedure' && <ProcedureTab key="p" activity={activity} expanded={expandedStep} setExpanded={setExpandedStep} />}
@@ -190,7 +190,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
 /* ── Section helper ───────────────── */
 function Section({ icon: Icon, title, accent = 'text-accent', iconBg = 'bg-accent-dim border-accent-subtle', children }) {
   return (
-    <section className="mb-8 last:mb-0 glass-popup-element rounded-[12px] p-4">
+    <section className="mb-5 last:mb-0 rounded-[10px] bg-surface glass-card border border-edge p-3.5">
       <div className="flex items-center gap-3 mb-3">
         <div className={`w-7 h-7 rounded-[8px] border flex items-center justify-center ${iconBg} ${accent}`}>
           <Icon className="w-3.5 h-3.5" />
@@ -217,7 +217,7 @@ function Callout({ tag, children, variant = 'accent' }) {
     danger:  'text-danger/55',
   };
   return (
-    <div className={`p-3 rounded-[6px] border-l-[3px] glass-popup-element ${styles[variant]}`}>
+    <div className={`p-3 rounded-[6px] border-l-[3px] bg-surface border border-edge ${styles[variant]}`}>
       {tag && <span className={`block text-[10px] font-bold uppercase tracking-[0.05em] mb-0.5 ${tagColor[variant]}`}>{tag}</span>}
       <div className="text-[12px] text-muted leading-relaxed">{children}</div>
     </div>
@@ -231,27 +231,29 @@ function OverviewTab({ activity }) {
   return (
     <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
 
-      {/* Hero illustration */}
-      <HeroIllustration heroGraphic={activity.heroGraphic} stream={activity.stream} className="mb-5" />
-
-      {/* Stats at a glance */}
-      <div className="mb-6">
+      {/* Stats at a glance — compact row */}
+      <div className="mb-4">
         <StatsAtGlance activity={activity} />
       </div>
+
+      {/* Hero illustration — compact */}
+      <HeroIllustration heroGraphic={activity.heroGraphic} stream={activity.stream} className="mb-4" />
 
       <Section icon={Target} title="Objective">
         <p className="text-[14px] text-heading leading-relaxed">{activity.objective}</p>
       </Section>
 
-      {/* Skills radar + Difficulty + Group size — side by side */}
-      <div className="grid sm:grid-cols-3 gap-3 mb-8">
+      {/* Skills radar + Difficulty + Group size — 2-col with stacked right */}
+      <div className="grid sm:grid-cols-[1.4fr_1fr] gap-2.5 mb-5">
         <SkillsRadar skills={activity.skills} stream={activity.stream} />
-        <DifficultyMeter difficulty={activity.difficulty} />
-        <GroupSizeVisual groupSize={activity.groupSize} stream={activity.stream} />
+        <div className="flex flex-col gap-2.5">
+          <DifficultyMeter difficulty={activity.difficulty} />
+          <GroupSizeVisual groupSize={activity.groupSize} stream={activity.stream} />
+        </div>
       </div>
 
       {/* Duration timeline */}
-      <div className="mb-8">
+      <div className="mb-5">
         <DurationTimeline procedure={activity.procedure} stream={activity.stream} />
       </div>
 
@@ -276,7 +278,7 @@ function OverviewTab({ activity }) {
         <LearningJourneyMap learningOutcomes={activity.learningOutcomes} stream={activity.stream} />
       </Section>
 
-      <Section icon={ClipboardCheck} title="Replicability Check" accent="text-success" iconBg="bg-success-dim border-success/20">
+      <Section icon={ClipboardCheck} title="Replicability" accent="text-success" iconBg="bg-success-dim border-success/20">
         <div className="space-y-2">
           <Callout tag="Key Question" variant="accent">{activity.replicabilityCheck.question}</Callout>
           <Callout tag="Success Criteria" variant="success">{activity.replicabilityCheck.successCriteria}</Callout>
@@ -287,7 +289,7 @@ function OverviewTab({ activity }) {
       <Section icon={MessageSquare} title="Debrief Questions">
         <div className="space-y-2">
           {activity.debriefQuestions.map((q, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 rounded-[10px] glass-popup-element">
+              <div key={i} className="flex items-start gap-3 p-3 rounded-[10px] bg-surface glass-card border border-edge">
               <HelpCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
               <span className="text-[12.5px] text-body">{q}</span>
             </div>
@@ -297,9 +299,9 @@ function OverviewTab({ activity }) {
 
       {activity.variations && activity.variations.length > 0 && (
         <Section icon={LayoutGrid} title="Variations">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {activity.variations.map((v, i) => (
-                <div key={i} className="p-4 rounded-[10px] transition-all duration-150 glass-popup-element">
+                <div key={i} className="p-4 rounded-[10px] transition-all duration-150 bg-surface glass-card border border-edge">
                 <h4 className="text-[14px] font-semibold text-heading mb-1">{v.name}</h4>
                 <p className="text-[12px] text-muted leading-relaxed">{v.description}</p>
               </div>
@@ -322,15 +324,15 @@ function ProcedureTab({ activity, expanded, setExpanded }) {
       <ProcedureFlowDiagram procedure={activity.procedure} stream={activity.stream} />
 
       {/* Duration timeline */}
-      <div className="mb-5">
+      <div className="mb-4">
         <DurationTimeline procedure={activity.procedure} stream={activity.stream} />
       </div>
 
-      <div className="flex items-center justify-between mb-5">
-        <h3 className="text-[13px] font-bold text-body uppercase tracking-[0.06em] flex items-center gap-2">
-          <Footprints className="w-4 h-4 text-accent" /> Step-by-Step Procedure
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-[12px] font-bold text-body uppercase tracking-[0.06em] flex items-center gap-2">
+          <Footprints className="w-3.5 h-3.5 text-accent" /> Step-by-Step Procedure
         </h3>
-        <span className="text-[11px] text-muted font-mono">Total {activity.durationMin} min</span>
+        <span className="text-[10px] text-muted font-mono">Total {activity.durationMin} min</span>
       </div>
 
       {/* Timeline */}
@@ -341,32 +343,32 @@ function ProcedureTab({ activity, expanded, setExpanded }) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.05, duration: 0.2 }}
-            className="relative pl-8 pb-5 last:pb-0"
+            className="relative pl-7 pb-4 last:pb-0"
           >
             {/* connector */}
             {i < activity.procedure.length - 1 && (
-              <div className="absolute left-[11px] top-7 w-px h-[calc(100%-12px)] bg-gradient-to-b from-accent/30 to-edge" />
+              <div className="absolute left-[9px] top-6 w-px h-[calc(100%-10px)] bg-gradient-to-b from-accent/30 to-edge" />
             )}
 
             {/* dot */}
-            <div className="absolute left-0 top-0 w-6 h-6 rounded-full bg-accent text-invert text-[11px] font-bold font-mono flex items-center justify-center">
+            <div className="absolute left-0 top-0 w-5 h-5 rounded-full bg-accent text-invert text-[10px] font-bold font-mono flex items-center justify-center">
               {step.step}
             </div>
 
             {/* card */}
             <div
               onClick={() => setExpanded(expanded === i ? null : i)}
-              className={`rounded-[10px] cursor-pointer transition-all duration-150 glass-popup-element ${expanded === i ? 'border-accent/30' : ''}`}
+              className={`rounded-[8px] cursor-pointer transition-all duration-150 bg-surface glass-card border border-edge ${expanded === i ? 'border-accent/30' : ''}`}
             >
-              <div className="p-4 flex items-start justify-between gap-3">
+              <div className="p-3 flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-[14px] font-semibold text-heading">{step.title}</h4>
-                    <span className="px-2 py-0.5 rounded-md bg-accent-dim text-accent text-[10px] font-medium font-mono">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h4 className="text-[13px] font-semibold text-heading">{step.title}</h4>
+                    <span className="px-1.5 py-0.5 rounded-md bg-accent-dim text-accent text-[9px] font-medium font-mono">
                       {step.duration} min
                     </span>
                   </div>
-                  <p className="text-[12.5px] text-body leading-relaxed">{step.description}</p>
+                  <p className="text-[12px] text-body leading-relaxed">{step.description}</p>
                 </div>
                 {expanded === i
                   ? <ChevronUp className="w-4 h-4 text-muted flex-shrink-0 mt-1" />
@@ -394,7 +396,7 @@ function ProcedureTab({ activity, expanded, setExpanded }) {
       </div>
 
       {/* Deliverable */}
-      <div className="mt-5 p-4 rounded-[10px] glass-popup-element bg-accent-dim border-accent-subtle">
+      <div className="mt-4 p-3 rounded-[8px] bg-surface glass-card border border-edge bg-accent-dim border-accent-subtle">
         <div className="flex items-center gap-2 mb-1.5">
           <CheckCircle2 className="w-4 h-4 text-accent" />
           <h4 className="text-[13px] font-bold text-heading">Expected Deliverable</h4>
@@ -413,9 +415,6 @@ function StudentTab({ activity }) {
   return (
     <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
 
-      {/* Hero illustration for context */}
-      <HeroIllustration heroGraphic={activity.heroGraphic} stream={activity.stream} className="mb-5" />
-
       <Section icon={GraduationCap} title="What You Will Learn" accent="text-al" iconBg="bg-al-dim border-al-subtle">
         <div className="p-4 rounded-[10px] bg-al-dim border border-al-subtle">
           <p className="text-[14px] text-heading leading-relaxed font-medium">{g.whatYouLearn}</p>
@@ -423,12 +422,12 @@ function StudentTab({ activity }) {
       </Section>
 
       {/* Learning outcomes journey map */}
-      <div className="mb-8">
+      <div className="mb-5">
         <LearningJourneyMap learningOutcomes={activity.learningOutcomes} stream={activity.stream} />
       </div>
 
-      {/* Skills radar for this activity */}
-      <div className="grid sm:grid-cols-2 gap-3 mb-8">
+      {/* Skills radar + difficulty */}
+      <div className="grid sm:grid-cols-[1.4fr_1fr] gap-2.5 mb-5">
         <SkillsRadar skills={activity.skills} stream={activity.stream} />
         <DifficultyMeter difficulty={activity.difficulty} />
       </div>
@@ -444,7 +443,7 @@ function StudentTab({ activity }) {
       <Section icon={MessageSquare} title="Reflection Prompts">
         <div className="space-y-2">
           {g.reflectionPrompts.map((p, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 rounded-[10px] glass-popup-element">
+              <div key={i} className="flex items-start gap-3 p-3 rounded-[10px] bg-surface glass-card border border-edge">
               <HelpCircle className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
               <p className="text-[12.5px] text-body leading-relaxed">{p}</p>
             </div>
@@ -453,7 +452,7 @@ function StudentTab({ activity }) {
       </Section>
 
       {g.extensionChallenge && (
-        <div className="p-4 rounded-[10px] glass-popup-element bg-accent-dim border-accent-subtle">
+        <div className="p-4 rounded-[10px] bg-surface glass-card border border-edge bg-accent-dim border-accent-subtle">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-5 h-5 text-accent" />
             <h4 className="text-[14px] font-semibold text-heading">Extension Challenge</h4>
@@ -480,7 +479,7 @@ function LecturerTab({ activity }) {
       </Section>
 
       {/* Facilitation Gantt chart */}
-      <div className="mb-8">
+      <div className="mb-5">
         <FacilitationGantt
           facilitationScript={g.facilitationScript}
           totalDuration={activity.durationMin}
@@ -489,7 +488,7 @@ function LecturerTab({ activity }) {
       </div>
 
       {/* Engagement curve + stats row */}
-      <div className="grid sm:grid-cols-2 gap-3 mb-8">
+      <div className="grid sm:grid-cols-2 gap-2.5 mb-5">
         <EngagementCurve procedure={activity.procedure} stream={activity.stream} />
         <GroupSizeVisual groupSize={activity.groupSize} stream={activity.stream} />
       </div>
@@ -499,7 +498,7 @@ function LecturerTab({ activity }) {
       </Section>
 
       <Section icon={Clock} title="Facilitation Timeline">
-        <div className="rounded-[10px] glass-popup-element overflow-hidden divide-y divide-edge">
+        <div className="rounded-[10px] bg-surface glass-card border border-edge overflow-hidden divide-y divide-edge">
           {g.facilitationScript.map((row, i) => (
             <div key={i} className="flex items-start gap-4 px-4 py-3 hover:bg-surface-hover transition-colors">
               <span className="flex-shrink-0 px-2 py-0.5 rounded-md bg-accent-dim text-accent text-[11px] font-semibold font-mono whitespace-nowrap mt-0.5">
@@ -545,7 +544,7 @@ function LecturerTab({ activity }) {
           <RubricChart rubricSnapshot={g.rubricSnapshot} />
         </div>
         {/* Detailed rubric table */}
-        <div className="rounded-[10px] glass-popup-element overflow-hidden divide-y divide-edge">
+        <div className="rounded-[10px] bg-surface glass-card border border-edge overflow-hidden divide-y divide-edge">
           {Object.entries(g.rubricSnapshot).map(([level, desc]) => {
             const cfg = {
               excellent:  { pill: 'bg-success-dim text-success', row: 'bg-success-dim/40' },
@@ -565,7 +564,7 @@ function LecturerTab({ activity }) {
         </div>
       </Section>
 
-      <div className="p-4 rounded-[10px] glass-popup-element">
+      <div className="p-4 rounded-[10px] bg-surface glass-card border border-edge">
         <div className="flex items-center gap-2 mb-1.5">
           <BookOpen className="w-4 h-4 text-muted" />
           <h4 className="text-[13px] font-bold text-heading">Post-Class Reflection</h4>
@@ -579,7 +578,7 @@ function LecturerTab({ activity }) {
           <Section icon={BookOpen} title="Research References" accent="text-muted" iconBg="bg-surface-raised border-edge">
             <div className="space-y-2">
               {activity.references.map((ref, i) => (
-                <div key={i} className="p-3 rounded-[8px] glass-popup-element">
+                <div key={i} className="p-3 rounded-[8px] bg-surface glass-card border border-edge">
                   <p className="text-[11.5px] text-body leading-relaxed">
                     <span className="font-semibold text-heading">{ref.author}</span>{' '}
                     <span className="text-muted">({ref.year}).</span>{' '}

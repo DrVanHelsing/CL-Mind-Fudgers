@@ -39,7 +39,7 @@ function FilterBar({
   return (
     <div className="glass-panel-soft overflow-hidden">
       {/* ── Top row: search + stream pills ── */}
-      <div className="p-4 flex flex-col sm:flex-row gap-3">
+      <div className="p-3 flex flex-col sm:flex-row gap-2.5">
         {/* Search */}
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
@@ -95,7 +95,7 @@ function FilterBar({
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 pt-1 border-t border-divider grid sm:grid-cols-3 gap-4">
+            <div className="px-3 pb-3 pt-1 border-t border-divider grid sm:grid-cols-3 gap-3">
               {/* Mode */}
               <div>
                 <label className="block text-[10px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Mode</label>
@@ -151,7 +151,7 @@ function FilterBar({
       </AnimatePresence>
 
       {/* ── Footer: result count + clear ── */}
-      <div className="px-4 py-2.5 border-t border-divider flex items-center justify-between glass-popup-element rounded-none">
+      <div className="px-3 py-2 border-t border-divider flex items-center justify-between bg-surface rounded-none">
         <span className="text-[11px] text-muted">
           {resultCount} {resultCount === 1 ? 'activity' : 'activities'} found
         </span>

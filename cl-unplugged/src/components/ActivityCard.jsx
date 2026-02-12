@@ -29,7 +29,7 @@ function ActivityCard({ activity, index = 0, onClick }) {
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ delay: index * 0.04, duration: 0.25, ease: 'easeOut' }}
       onClick={onClick}
-      className="group flex flex-col gap-3 p-4 rounded-[10px] glass-element cursor-pointer"
+      className="group flex flex-col gap-2 p-3.5 rounded-[10px] glass-element cursor-pointer"
     >
       {/* Top row – badges */}
       <div className="flex items-center gap-2">
@@ -45,12 +45,12 @@ function ActivityCard({ activity, index = 0, onClick }) {
       </div>
 
       {/* Title */}
-      <h3 className="text-[14px] font-semibold text-heading leading-snug group-hover:text-accent transition-colors duration-150">
+      <h3 className="text-[13px] font-semibold text-heading leading-snug group-hover:text-accent transition-colors duration-150">
         {activity.title}
       </h3>
 
       {/* Objective */}
-      <p className="text-[12.5px] text-body leading-relaxed line-clamp-3">
+      <p className="text-[12px] text-body leading-relaxed line-clamp-2">
         {activity.objective}
       </p>
 

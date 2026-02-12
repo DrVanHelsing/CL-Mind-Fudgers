@@ -44,11 +44,11 @@ export default function LecturerGuides() {
 
   return (
     <section className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-        <div className="mb-8 glass-panel-soft p-5">
-          <h1 className="text-2xl font-bold text-heading flex items-center gap-2 mb-2">
-            <BookOpen className="w-6 h-6 text-accent" /> Lecturer Guides
+        <div className="mb-5 glass-panel-soft p-4">
+          <h1 className="text-xl font-bold text-heading flex items-center gap-2 mb-1">
+            <BookOpen className="w-5 h-5 text-accent" /> Lecturer Guides
           </h1>
           <p className="text-sm text-body max-w-2xl">
             Streamlined facilitation explorer: open any activity in a full-screen lecturer view to focus on timing,
@@ -56,7 +56,8 @@ export default function LecturerGuides() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-3 mb-6">
+        <div className="glass-panel-soft p-3 mb-5">
+        <div className="grid sm:grid-cols-3 gap-2.5">
           <div className="glass-element p-4 rounded-[12px]">
             <p className="text-[11px] text-muted uppercase tracking-[0.04em] mb-1">Visible Guides</p>
             <p className="text-2xl font-bold text-heading font-mono">{filtered.length}</p>
@@ -70,8 +71,9 @@ export default function LecturerGuides() {
             <p className="text-2xl font-bold text-success font-mono">{totalInt}</p>
           </div>
         </div>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 glass-panel-soft p-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 mb-5 glass-panel-soft p-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
             <input
@@ -110,7 +112,7 @@ export default function LecturerGuides() {
             <p className="text-[12.5px] text-muted max-w-xs">Try adjusting your search or stream filter.</p>
           </motion.div>
         ) : (
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
             {filtered.map((a) => {
               const cfg = streamCfg[a.stream];
               const Icon = cfg.icon;
