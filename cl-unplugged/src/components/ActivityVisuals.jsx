@@ -108,11 +108,6 @@ export function HeroIllustration({ heroGraphic, stream, className = '' }) {
       {(playing) => (
         <div className="relative w-full mx-auto" style={{ maxWidth: maxW }}>
           <HeroSVG type={heroGraphic} c={c} playing={playing} />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-9 h-9 rounded-[10px] bg-panel glass-card border border-edge flex items-center justify-center" style={{ color: c }}>
-              <cfg.Icon className="w-4 h-4" />
-            </div>
-          </div>
         </div>
       )}
     </AnimCtrl>
@@ -2799,7 +2794,7 @@ export function SkillsRadar({ skills, stream }) {
   const n = skills.length;
   if (n < 3) return <SkillsBar skills={skills} stream={stream} />;
 
-  const cx = 100, cy = 95, r = 70;
+  const cx = 130, cy = 125, r = 70;
   const step = (2 * Math.PI) / n;
   const rings = [0.33, 0.66, 1];
   const values = skills.map(s => {
@@ -2815,7 +2810,7 @@ export function SkillsRadar({ skills, stream }) {
   return (
     <div className="rounded-[10px] bg-surface glass-card border border-edge p-3">
       <h4 className="text-[11px] font-bold text-muted uppercase tracking-[0.06em] mb-2 text-center">Skills Coverage</h4>
-      <svg viewBox="0 0 200 195" className="w-full max-w-[200px] mx-auto">
+      <svg viewBox="0 0 260 255" className="w-full max-w-[260px] mx-auto">
         {rings.map(ring => (
           <polygon key={ring} points={skills.map((_, i) => {
             const a = -Math.PI / 2 + i * step;
@@ -2833,13 +2828,15 @@ export function SkillsRadar({ skills, stream }) {
         })}
         {skills.map((s, i) => {
           const a = -Math.PI / 2 + i * step;
-          const lx = cx + (r + 18) * Math.cos(a);
-          const ly = cy + (r + 18) * Math.sin(a);
+          const lx = cx + (r + 22) * Math.cos(a);
+          const ly = cy + (r + 22) * Math.sin(a);
           const label = s.replace(/-/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
+          const cosA = Math.cos(a);
+          const anchor = cosA < -0.1 ? 'end' : cosA > 0.1 ? 'start' : 'middle';
           return (
-            <text key={i} x={lx} y={ly} textAnchor="middle" dominantBaseline="middle"
-              fill="var(--theme-body)" fontSize="7.5" fontFamily="Inter, sans-serif">
-              {label.length > 14 ? label.slice(0, 12) + '..' : label}
+            <text key={i} x={lx} y={ly} textAnchor={anchor} dominantBaseline="middle"
+              fill="var(--theme-body)" fontSize="7" fontFamily="Inter, sans-serif">
+              {label.length > 18 ? label.slice(0, 16) + '..' : label}
             </text>
           );
         })}
