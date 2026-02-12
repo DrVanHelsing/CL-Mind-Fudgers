@@ -1,0 +1,431 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   Glassmorphic Dual-Theme Design System
+   Dark + Light with System Default
+   ═══════════════════════════════════════ */
+
+/* ── Theme Variables (Dark default) ──── */
+:root {
+  --theme-base: #0d1117;
+  --theme-panel: rgba(13, 17, 23, 0.70);
+  --theme-surface: rgba(255, 255, 255, 0.04);
+  --theme-surface-hover: rgba(255, 255, 255, 0.06);
+  --theme-surface-raised: rgba(255, 255, 255, 0.07);
+  --theme-surface-bright: rgba(255, 255, 255, 0.08);
+  --theme-edge: rgba(255, 255, 255, 0.06);
+  --theme-edge-hover: rgba(255, 255, 255, 0.10);
+  --theme-edge-strong: rgba(255, 255, 255, 0.16);
+  --theme-divider: rgba(240, 246, 252, 0.10);
+  --theme-heading: #e6edf3;
+  --theme-body: #8b949e;
+  --theme-muted: #484f58;
+  --theme-invert: #0d1117;
+  --theme-accent: #58a6ff;
+  --theme-accent-dim: rgba(88, 166, 255, 0.15);
+  --theme-accent-subtle: rgba(88, 166, 255, 0.20);
+  --theme-accent-muted: rgba(88, 166, 255, 0.55);
+  --theme-cl: #58a6ff;
+  --theme-cl-dim: rgba(88, 166, 255, 0.10);
+  --theme-cl-subtle: rgba(88, 166, 255, 0.18);
+  --theme-al: #bc8cff;
+  --theme-al-dim: rgba(188, 140, 255, 0.10);
+  --theme-al-subtle: rgba(188, 140, 255, 0.18);
+  --theme-ql: #3fb950;
+  --theme-ql-dim: rgba(63, 185, 80, 0.10);
+  --theme-ql-subtle: rgba(63, 185, 80, 0.18);
+  --theme-success: #3fb950;
+  --theme-success-dim: rgba(63, 185, 80, 0.12);
+  --theme-warning: #d29922;
+  --theme-warning-dim: rgba(210, 153, 34, 0.12);
+  --theme-danger: #f85149;
+  --theme-danger-dim: rgba(248, 81, 73, 0.12);
+  --theme-shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.55);
+  --theme-shadow-card: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --theme-shadow-glow: 0 0 40px rgba(88, 166, 255, 0.06);
+  --theme-glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%);
+  --theme-overlay-bg: rgba(0, 0, 0, 0.60);
+  --theme-overlay-blur: 6px;
+  --theme-glass-blur-heavy: 24px;
+  --theme-glass-blur-medium: 12px;
+  --theme-scrollbar-thumb: rgba(255, 255, 255, 0.10);
+  --theme-scrollbar-hover: rgba(255, 255, 255, 0.18);
+  --theme-focus-ring: #58a6ff;
+  --theme-bg-glow-1: rgba(88, 166, 255, 0.06);
+  --theme-bg-glow-2: rgba(188, 140, 255, 0.04);
+  --theme-bg-glow-3: rgba(63, 185, 80, 0.04);
+  --theme-sci-cl: rgba(88, 166, 255, 0.45);
+  --theme-sci-al: rgba(188, 140, 255, 0.42);
+  --theme-sci-ql: rgba(63, 185, 80, 0.40);
+  --theme-sci-accent: rgba(88, 166, 255, 0.38);
+}
+
+/* ── Light theme overrides ──────────── */
+[data-theme="light"] {
+  --theme-base: #f6f8fa;
+  --theme-panel: rgba(255, 255, 255, 0.60);
+  --theme-surface: rgba(0, 0, 0, 0.03);
+  --theme-surface-hover: rgba(0, 0, 0, 0.05);
+  --theme-surface-raised: rgba(0, 0, 0, 0.06);
+  --theme-surface-bright: rgba(0, 0, 0, 0.08);
+  --theme-edge: rgba(31, 35, 40, 0.08);
+  --theme-edge-hover: rgba(31, 35, 40, 0.15);
+  --theme-edge-strong: rgba(31, 35, 40, 0.20);
+  --theme-divider: rgba(31, 35, 40, 0.08);
+  --theme-heading: #1f2328;
+  --theme-body: #656d76;
+  --theme-muted: #8b949e;
+  --theme-invert: #ffffff;
+  --theme-accent: #0969da;
+  --theme-accent-dim: rgba(9, 105, 218, 0.12);
+  --theme-accent-subtle: rgba(9, 105, 218, 0.20);
+  --theme-accent-muted: rgba(9, 105, 218, 0.55);
+  --theme-cl: #0969da;
+  --theme-cl-dim: rgba(9, 105, 218, 0.10);
+  --theme-cl-subtle: rgba(9, 105, 218, 0.18);
+  --theme-al: #8250df;
+  --theme-al-dim: rgba(130, 80, 223, 0.10);
+  --theme-al-subtle: rgba(130, 80, 223, 0.18);
+  --theme-ql: #1a7f37;
+  --theme-ql-dim: rgba(26, 127, 55, 0.10);
+  --theme-ql-subtle: rgba(26, 127, 55, 0.18);
+  --theme-success: #1a7f37;
+  --theme-success-dim: rgba(26, 127, 55, 0.10);
+  --theme-warning: #9a6700;
+  --theme-warning-dim: rgba(154, 103, 0, 0.10);
+  --theme-danger: #cf222e;
+  --theme-danger-dim: rgba(207, 34, 46, 0.10);
+  --theme-shadow-modal: 0 16px 64px rgba(0, 0, 0, 0.15);
+  --theme-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --theme-shadow-glow: 0 0 40px rgba(9, 105, 218, 0.06);
+  --theme-glass-highlight: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.20) 50%, transparent 100%);
+  --theme-overlay-bg: rgba(255, 255, 255, 0.50);
+  --theme-overlay-blur: 8px;
+  --theme-glass-blur-heavy: 20px;
+  --theme-glass-blur-medium: 12px;
+  --theme-scrollbar-thumb: rgba(0, 0, 0, 0.12);
+  --theme-scrollbar-hover: rgba(0, 0, 0, 0.22);
+  --theme-focus-ring: #0969da;
+  --theme-bg-glow-1: rgba(9, 105, 218, 0.06);
+  --theme-bg-glow-2: rgba(130, 80, 223, 0.05);
+  --theme-bg-glow-3: rgba(26, 127, 55, 0.04);
+  --theme-sci-cl: rgba(9, 105, 218, 0.38);
+  --theme-sci-al: rgba(130, 80, 223, 0.38);
+  --theme-sci-ql: rgba(26, 127, 55, 0.35);
+  --theme-sci-accent: rgba(9, 105, 218, 0.32);
+}
+
+@theme {
+  /* ── Fonts ──────────────────────── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+
+  /* ── Base backgrounds ───────────── */
+  --color-base: var(--theme-base);
+  --color-panel: var(--theme-panel);
+
+  /* ── Glass surfaces ─────────────── */
+  --color-surface: var(--theme-surface);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-surface-raised: var(--theme-surface-raised);
+  --color-surface-bright: var(--theme-surface-bright);
+
+  /* ── Edges ──────────────────────── */
+  --color-edge: var(--theme-edge);
+  --color-edge-hover: var(--theme-edge-hover);
+  --color-edge-strong: var(--theme-edge-strong);
+  --color-divider: var(--theme-divider);
+
+  /* ── Text hierarchy ─────────────── */
+  --color-heading: var(--theme-heading);
+  --color-body: var(--theme-body);
+  --color-muted: var(--theme-muted);
+  --color-invert: var(--theme-invert);
+
+  /* ── Accent ─────────────────────── */
+  --color-accent: var(--theme-accent);
+  --color-accent-dim: var(--theme-accent-dim);
+  --color-accent-subtle: var(--theme-accent-subtle);
+  --color-accent-muted: var(--theme-accent-muted);
+
+  /* ── Streams ────────────────────── */
+  --color-cl: var(--theme-cl);
+  --color-cl-dim: var(--theme-cl-dim);
+  --color-cl-subtle: var(--theme-cl-subtle);
+  --color-al: var(--theme-al);
+  --color-al-dim: var(--theme-al-dim);
+  --color-al-subtle: var(--theme-al-subtle);
+  --color-ql: var(--theme-ql);
+  --color-ql-dim: var(--theme-ql-dim);
+  --color-ql-subtle: var(--theme-ql-subtle);
+
+  /* ── Semantic ───────────────────── */
+  --color-success: var(--theme-success);
+  --color-success-dim: var(--theme-success-dim);
+  --color-warning: var(--theme-warning);
+  --color-warning-dim: var(--theme-warning-dim);
+  --color-danger: var(--theme-danger);
+  --color-danger-dim: var(--theme-danger-dim);
+
+  /* ── Shadows ────────────────────── */
+  --shadow-modal: var(--theme-shadow-modal);
+  --shadow-card: var(--theme-shadow-card);
+  --shadow-glow: var(--theme-shadow-glow);
+
+  /* ── Animations ─────────────────── */
+  --animate-fade-in: fadeIn 0.18s ease-out;
+  --animate-slide-up: slideUp 0.22s ease-out;
+}
+
+/* ── Keyframes ───────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -20px) scale(1.05); }
+  66%      { transform: translate(-20px, 15px) scale(0.97); }
+}
+
+/* ── Global Resets ───────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: var(--theme-base);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 40%, var(--theme-bg-glow-1) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 80% 20%, var(--theme-bg-glow-2) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 90%, var(--theme-bg-glow-3) 0%, transparent 70%);
+  background-attachment: fixed;
+  color: var(--theme-heading);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Glassmorphism Utilities ─────────── */
+.glass {
+  background: var(--theme-surface);
+  backdrop-filter: blur(var(--theme-glass-blur-medium));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+  border: 1px solid var(--theme-edge);
+  position: relative;
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--theme-glass-highlight);
+  pointer-events: none;
+  z-index: 0;
+}
+.glass > * { position: relative; z-index: 1; }
+
+.glass-card {
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-edge);
+  box-shadow: var(--theme-shadow-card);
+  backdrop-filter: blur(var(--theme-glass-blur-medium));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+}
+
+/* Heavy glass — for modals, popups, side panels that float over content */
+.glass-heavy {
+  backdrop-filter: blur(var(--theme-glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-heavy));
+}
+
+.glass-nav {
+  backdrop-filter: blur(var(--theme-glass-blur-heavy)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-heavy)) saturate(180%);
+}
+
+/* Theme-aware overlay — dims background, adapts between dark/light */
+.glass-overlay {
+  background: var(--theme-overlay-bg);
+  backdrop-filter: blur(var(--theme-overlay-blur));
+  -webkit-backdrop-filter: blur(var(--theme-overlay-blur));
+}
+
+.glass-panel {
+  position: relative;
+  background: var(--theme-panel);
+  border: 1px solid var(--theme-divider);
+  border-radius: 14px;
+  box-shadow: var(--theme-shadow-card);
+  backdrop-filter: blur(var(--theme-glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-heavy));
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--theme-glass-highlight);
+  pointer-events: none;
+}
+
+.glass-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-element {
+  position: relative;
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-edge);
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(var(--theme-glass-blur-medium));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-element:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-edge-hover);
+}
+
+.glass-panel-soft {
+  position: relative;
+  background: color-mix(in srgb, var(--theme-panel) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--theme-divider) 78%, transparent);
+  border-radius: 14px;
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(calc(var(--theme-glass-blur-heavy) + 2px));
+  -webkit-backdrop-filter: blur(calc(var(--theme-glass-blur-heavy) + 2px));
+}
+
+.glass-panel-soft::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--theme-glass-highlight);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.glass-panel-soft > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-popup {
+  position: relative;
+  background: color-mix(in srgb, var(--theme-panel) 62%, transparent);
+  border: 1px solid color-mix(in srgb, var(--theme-divider) 65%, transparent);
+  box-shadow: 0 30px 120px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(calc(var(--theme-glass-blur-heavy) + 8px)) saturate(140%);
+  -webkit-backdrop-filter: blur(calc(var(--theme-glass-blur-heavy) + 8px)) saturate(140%);
+}
+
+.glass-popup-element {
+  background: color-mix(in srgb, var(--theme-surface) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--theme-edge) 70%, transparent);
+  backdrop-filter: blur(calc(var(--theme-glass-blur-medium) + 4px));
+  -webkit-backdrop-filter: blur(calc(var(--theme-glass-blur-medium) + 4px));
+}
+
+.glass-popup-element:hover {
+  background: color-mix(in srgb, var(--theme-surface-hover) 64%, transparent);
+  border-color: color-mix(in srgb, var(--theme-edge-hover) 82%, transparent);
+}
+
+.glass-pill {
+  background: var(--theme-surface-raised);
+  border: 1px solid var(--theme-edge);
+  backdrop-filter: blur(var(--theme-glass-blur-medium));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+}
+
+.glass-inset {
+  background: color-mix(in srgb, var(--theme-surface) 82%, transparent);
+  border: 1px solid var(--theme-edge);
+  border-radius: 10px;
+  backdrop-filter: blur(var(--theme-glass-blur-medium));
+  -webkit-backdrop-filter: blur(var(--theme-glass-blur-medium));
+}
+
+/* ── Background decoration orbs ──────── */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: float 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Floating science SVG icons ──────── */
+.sci-icon {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+@keyframes sci-drift-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20%      { transform: translate(40px, -30px) rotate(15deg); }
+  50%      { transform: translate(-25px, -60px) rotate(-10deg); }
+  75%      { transform: translate(15px, 20px) rotate(8deg); }
+}
+@keyframes sci-drift-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25%      { transform: translate(-35px, 25px) rotate(-12deg); }
+  55%      { transform: translate(20px, 50px) rotate(18deg); }
+  80%      { transform: translate(-10px, -20px) rotate(-5deg); }
+}
+@keyframes sci-drift-c {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%      { transform: translate(30px, 40px) rotate(20deg); }
+  60%      { transform: translate(-40px, -15px) rotate(-15deg); }
+  85%      { transform: translate(10px, -35px) rotate(5deg); }
+}
+
+.sci-drift-a { animation: sci-drift-a 38s ease-in-out infinite; }
+.sci-drift-b { animation: sci-drift-b 45s ease-in-out infinite; }
+.sci-drift-c { animation: sci-drift-c 52s ease-in-out infinite; }
+
+/* ── Scrollbar ───────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--theme-scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--theme-scrollbar-hover); }
+
+/* ── Focus Ring ──────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--theme-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Selection ───────────────────────── */
+::selection {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-heading);
+}
+
+/* ── Smooth theme transition ─────────── */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ── Print ───────────────────────────── */
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+  .bg-orb { display: none !important; }
+  .sci-icon { display: none !important; }
+}

@@ -1,0 +1,89 @@
+import { useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { SearchX, Layers } from 'lucide-react';
+import { activities } from '../data/activities';
+import FilterBar from '../components/FilterBar';
+import ActivityCard from '../components/ActivityCard';
+import ActivityPopup from '../components/ActivityPopup';
+
+export default function Activities() {
+  const [searchParams] = useSearchParams();
+  const initialStream = searchParams.get('stream') || '';
+  const initialMode   = searchParams.get('mode')   || '';
+
+  const [search,          setSearch]          = useState('');
+  const [activeStream,    setActiveStream]    = useState(initialStream);
+  const [activeMode,      setActiveMode]      = useState(initialMode);
+  const [activeDuration,  setActiveDuration]  = useState('');
+  const [activeGroupSize, setActiveGroupSize] = useState('');
+  const [selectedActivity, setSelectedActivity] = useState(null);
+
+  const filtered = useMemo(() => {
+    return activities.filter((a) => {
+      if (activeStream && a.stream !== activeStream) return false;
+      if (activeMode   && a.mode   !== activeMode)   return false;
+      if (activeDuration) {
+        if (a.durationMin > parseInt(activeDuration, 10)) return false;
+      }
+      if (activeGroupSize) {
+        if (a.groupSize.replace(/\s/g, '') !== activeGroupSize) return false;
+      }
+      if (search) {
+        const q = search.toLowerCase();
+        const hay = [a.title, a.objective, ...a.skills, a.stream, a.mode].join(' ').toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [search, activeStream, activeMode, activeDuration, activeGroupSize]);
+
+  return (
+    <section className="min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        {/* Header */}
+        <div className="mb-8 glass-panel-soft p-5">
+          <h1 className="text-2xl font-bold text-heading flex items-center gap-2 mb-2">
+            <Layers className="w-6 h-6 text-accent" /> Activity Library
+          </h1>
+          <p className="text-sm text-body">Browse, filter, and explore all unplugged activities.</p>
+        </div>
+
+        <FilterBar
+          search={search}           setSearch={setSearch}
+          activeStream={activeStream} setActiveStream={setActiveStream}
+          activeMode={activeMode}     setActiveMode={setActiveMode}
+          activeDuration={activeDuration} setActiveDuration={setActiveDuration}
+          activeGroupSize={activeGroupSize} setActiveGroupSize={setActiveGroupSize}
+          resultCount={filtered.length}
+        />
+
+        {/* Grid */}
+        {filtered.length > 0 ? (
+          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-5">
+            <AnimatePresence>
+              {filtered.map((a, i) => (
+                <ActivityCard key={a.id} activity={a} index={i} onClick={() => setSelectedActivity(a)} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        ) : (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center py-24 text-center">
+            <div className="w-14 h-14 rounded-[14px] glass-element flex items-center justify-center mb-4">
+              <SearchX className="w-7 h-7 text-muted" />
+            </div>
+            <h3 className="text-[15px] font-semibold text-heading mb-1">No activities found</h3>
+            <p className="text-[12.5px] text-muted max-w-xs">Try adjusting your filters or search query.</p>
+          </motion.div>
+        )}
+      </div>
+
+      <ActivityPopup
+        activity={selectedActivity}
+        isOpen={!!selectedActivity}
+        onClose={() => setSelectedActivity(null)}
+      />
+    </section>
+  );
+}
