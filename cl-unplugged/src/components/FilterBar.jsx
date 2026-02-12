@@ -6,6 +6,7 @@ import {
   X,
   ChevronDown,
   ChevronUp,
+  CalendarDays,
 } from 'lucide-react';
 import { streams, modes, durationOptions, groupSizeOptions, weekSchedule } from '../data/activities';
 
@@ -88,7 +89,7 @@ function FilterBar({
         </div>
       </div>
 
-      {/* ── CL Timeline ──────────────────── */}
+      {/* ── CL Week Filter ────────────── */}
       <AnimatePresence>
         {(activeStream === 'CL' || activeWeek) && (
           <motion.div
@@ -98,34 +99,48 @@ function FilterBar({
             className="overflow-hidden"
           >
             <div className="px-3 pb-2.5 pt-2 border-t border-divider">
-              <label className="block text-[10px] font-bold text-muted uppercase tracking-[0.06em] mb-2">Weekly Timeline</label>
-              <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+              <label className="block text-[10px] font-bold text-muted uppercase tracking-[0.06em] mb-2">
+                <CalendarDays className="w-3 h-3 inline mr-1 -mt-0.5" />Weekly Timeline
+              </label>
+              <div className="flex flex-wrap gap-1.5">
                 <button
                   onClick={() => setActiveWeek('')}
-                  className={`shrink-0 px-2.5 py-1.5 rounded-lg border text-[11px] font-medium transition-all duration-150 ${
+                  className={`px-2.5 py-1.5 rounded-lg border text-[11px] font-medium transition-all duration-150 ${
                     !activeWeek
                       ? 'bg-cl-dim text-cl border-cl-subtle'
                       : 'glass-pill text-body border-edge hover:bg-surface-hover'
                   }`}
                 >
-                  All Weeks
+                  All
                 </button>
                 {weekSchedule.map((w) => (
                   <button
                     key={w.week}
                     onClick={() => setActiveWeek(activeWeek === String(w.week) ? '' : String(w.week))}
                     title={`${w.topic}\nAI Focus: ${w.ai}`}
-                    className={`shrink-0 px-2.5 py-1.5 rounded-lg border text-[11px] font-medium transition-all duration-150 ${
+                    className={`min-w-[32px] px-2 py-1.5 rounded-lg border text-[11px] font-bold transition-all duration-150 ${
                       activeWeek === String(w.week)
                         ? 'bg-cl-dim text-cl border-cl-subtle'
                         : 'glass-pill text-body border-edge hover:bg-surface-hover'
                     }`}
                   >
-                    <span className="font-bold">W{w.week}</span>
-                    <span className="hidden sm:inline text-muted ml-1">· {w.topic.length > 18 ? w.topic.slice(0, 18) + '…' : w.topic}</span>
+                    {w.week}
                   </button>
                 ))}
               </div>
+              {activeWeek && (() => {
+                const w = weekSchedule.find(ws => String(ws.week) === activeWeek);
+                return w ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-2 px-3 py-2 rounded-lg bg-cl-dim border border-cl-subtle"
+                  >
+                    <p className="text-[11px] text-cl font-semibold">{w.topic}</p>
+                    <p className="text-[10px] text-muted mt-0.5">AI Focus: {w.ai}</p>
+                  </motion.div>
+                ) : null;
+              })()}
             </div>
           </motion.div>
         )}

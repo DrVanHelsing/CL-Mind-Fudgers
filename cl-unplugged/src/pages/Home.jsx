@@ -46,7 +46,7 @@ const fade = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } };
 
 export default function Home() {
   const total     = activities.length;
-  const unplugged = activities.filter((a) => a.mode === 'Unplugged').length;
+  // mode counts removed — "unplugged" refers to the pedagogical approach, not mode
   const nStreams   = Object.keys(streams).length;
 
   return (
@@ -73,13 +73,13 @@ export default function Home() {
             <motion.h1 variants={fade} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-heading leading-[1.1] mb-5 tracking-tight">
               Learn Computing<br />
               <span className="bg-gradient-to-r from-cl via-al to-ql bg-clip-text text-transparent">
-                Without the Computer
+                Through Problem Solving
               </span>
             </motion.h1>
 
             <motion.p variants={fade} className="max-w-2xl mx-auto text-[15px] text-body leading-relaxed mb-10">
-              Hands-on, unplugged activities that teach first-year students essential computing,
-              academic, and quantitative skills — no screens required.
+              Hands-on activities that teach first-year students essential computing,
+              academic, and quantitative skills through problem-solving and out-of-the-box thinking.
             </motion.p>
 
             <motion.div variants={fade} className="flex flex-wrap items-center justify-center gap-3">
@@ -93,16 +93,16 @@ export default function Home() {
                 to="/about"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg glass-element text-body font-semibold text-sm hover:text-heading"
               >
-                Why Unplugged?
+                Our Approach
               </Link>
             </motion.div>
 
             <motion.div variants={fade} className="flex items-center justify-center gap-5 mt-10 text-[12px] text-muted">
               <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-warning" /> {total} Activities</span>
               <span className="w-px h-3.5 bg-edge" />
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-success" /> {unplugged} Unplugged</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-success" /> {nStreams} Streams</span>
               <span className="w-px h-3.5 bg-edge" />
-              <span className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-accent" /> {nStreams} Streams</span>
+              <span className="flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-accent" /> 13 Weeks</span>
             </motion.div>
 
             </div>

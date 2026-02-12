@@ -73,7 +73,7 @@ function Layout({ children }) {
                 <Sparkles className="w-4 h-4" />
               </div>
               <span className="font-bold text-[15px] text-heading hidden sm:block tracking-tight">
-                CL Unplugged
+                ISC153 Unplugged
               </span>
             </Link>
 
@@ -176,7 +176,7 @@ function Layout({ children }) {
               <div className="w-6 h-6 rounded-lg bg-accent-dim flex items-center justify-center text-accent">
                 <Sparkles className="w-3 h-3" />
               </div>
-              <span className="text-sm font-semibold text-heading">CL Unplugged</span>
+              <span className="text-sm font-semibold text-heading">ISC153 Unplugged</span>
             </div>
             <p className="text-xs text-muted">
               First-Year Computer Literacy Activities

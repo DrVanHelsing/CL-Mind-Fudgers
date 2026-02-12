@@ -56,7 +56,7 @@ export default function Activities() {
           <h1 className="text-xl font-bold text-heading flex items-center gap-2 mb-1">
             <Layers className="w-5 h-5 text-accent" /> Activity Library
           </h1>
-          <p className="text-[13px] text-body">Browse, filter, and explore all unplugged activities.</p>
+          <p className="text-[13px] text-body">Browse, filter, and explore all activities across every stream and week.</p>
         </div>
 
         <FilterBar

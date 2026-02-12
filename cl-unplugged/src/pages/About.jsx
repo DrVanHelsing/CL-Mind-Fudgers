@@ -31,7 +31,7 @@ const streamBlocks = [
 /* ── benefits ──────────────────────── */
 const benefits = [
   { icon: Brain,     title: 'Deep Understanding',  text: 'Concrete activities build intuition before abstraction.' },
-  { icon: Users,     title: 'Inclusive',            text: 'No devices needed — every student can participate equally.' },
+  { icon: Users,     title: 'Inclusive',            text: 'Activities designed so every student can participate equally, regardless of tech background.' },
   { icon: Lightbulb, title: 'Engaging',             text: 'Hands-on tasks increase motivation and retention.' },
   { icon: Eye,       title: 'Observable',           text: 'Facilitators can see thinking in real time, not just on screens.' },
   { icon: RefreshCw, title: 'Replicable',           text: 'Built-in checks ensure activities work across contexts.' },
@@ -67,8 +67,8 @@ export default function About() {
               Why Unplugged?
             </motion.h1>
             <motion.p variants={fade} className="max-w-2xl mx-auto text-[15px] text-body leading-relaxed">
-              Screen-free activities that teach computing, academic, and quantitative literacies through
-              active, collaborative, and reflective learning experiences.
+              "Unplugged" doesn't mean avoiding computers — it's a teaching approach that builds
+              essential skills through problem-solving, hands-on collaboration, and out-of-the-box thinking.
             </motion.p>
             </div>
           </motion.div>
@@ -81,7 +81,7 @@ export default function About() {
           <div className="glass-panel-soft p-6 sm:p-8">
           <div className="text-center mb-10">
             <h2 className="text-xl font-bold text-heading mb-2">The Unplugged Advantage</h2>
-            <p className="text-body text-sm max-w-md mx-auto">Research-backed reasons hands-on learning outperforms screen-first approaches.</p>
+            <p className="text-body text-sm max-w-md mx-auto">Research-backed reasons problem-solving approaches enhance learning outcomes.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {benefits.map((b, i) => {
@@ -184,7 +184,7 @@ export default function About() {
           <div className="glass-panel-soft p-6 sm:p-8">
           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-xl font-bold text-heading mb-3">Get Started Today</h2>
-            <p className="text-body text-sm max-w-md mx-auto mb-8">Browse activities, print student guides, and run your first unplugged session.</p>
+            <p className="text-body text-sm max-w-md mx-auto mb-8">Browse activities, print student guides, and run your first session.</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link
                 to="/activities"

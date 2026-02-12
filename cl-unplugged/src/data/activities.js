@@ -1,9 +1,9 @@
-// Complete Activities Data for CL Unplugged
+// Complete Activities Data for ISC153 Unplugged
 // All activities include detailed student and lecturer guides
 
 export const activities = [
   // ============================================
-  // COMPUTER LITERACY (CL) - UNPLUGGED ACTIVITIES
+  // COMPUTER LITERACY (CL) ACTIVITIES
   // ============================================
   {
     id: 'cl-001',
@@ -3664,7 +3664,7 @@ export const activities = [
     ]
   },
   // ============================================
-  // ACADEMIC LITERACY (AL) - UNPLUGGED ACTIVITIES
+  // ACADEMIC LITERACY (AL) ACTIVITIES
   // ============================================
   {
     id: 'al-001',
@@ -4251,7 +4251,7 @@ export const activities = [
     ]
   },
   // ============================================
-  // QUANTITATIVE LITERACY (QL) - UNPLUGGED ACTIVITIES
+  // QUANTITATIVE LITERACY (QL) ACTIVITIES
   // ============================================
   {
     id: 'ql-001',
@@ -5015,7 +5015,7 @@ export const modes = {
   Unplugged: {
     id: 'Unplugged',
     name: 'Unplugged',
-    description: 'Activities without computers - hands-on, physical, collaborative learning.',
+    description: 'Hands-on, physical, collaborative learning activities — the core unplugged approach.',
     icon: 'Unplug'
   },
   Digital: {
@@ -5027,7 +5027,7 @@ export const modes = {
   Hybrid: {
     id: 'Hybrid',
     name: 'Hybrid',
-    description: 'Combination of unplugged and digital components.',
+    description: 'Combination of hands-on and digital components.',
     icon: 'Blend'
   }
 };

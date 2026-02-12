@@ -150,7 +150,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
             </div>
 
             {/* ── Tabs ──────────────────── */}
-            <div className="flex gap-0.5 px-4 border-b border-divider bg-surface glass-card no-print flex-shrink-0">
+            <div className="flex gap-0.5 px-4 border-b border-divider bg-surface glass-card no-print flex-shrink-0 overflow-x-auto scrollbar-thin">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const on = activeTab === tab.id;
@@ -158,7 +158,7 @@ function ActivityPopup({ activity, isOpen, onClose, initialTab = 'overview' }) {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[12px] font-medium border-b-2 whitespace-nowrap transition-all duration-150 ${
+                    className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-2.5 text-[11px] sm:text-[12px] font-medium border-b-2 whitespace-nowrap transition-all duration-150 ${
                       on
                         ? 'text-accent border-accent'
                         : 'text-body border-transparent hover:text-heading'
