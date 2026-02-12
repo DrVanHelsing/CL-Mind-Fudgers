@@ -138,6 +138,42 @@ function HeroSVG({ type, c, playing }) {
     case 'probability-tokens':      return <ProbabilityTokensSVG c={c} p={playing} />;
     case 'graph-matching':          return <GraphMatchSVG c={c} p={playing} />;
     case 'sampling-bias':           return <SamplingBiasSVG c={c} p={playing} />;
+    case 'file-treasure-hunt':      return <FileTreasureHuntSVG c={c} p={playing} />;
+    case 'desktop-algorithm':       return <DesktopAlgorithmSVG c={c} p={playing} />;
+    case 'ai-boundaries':           return <AIBoundariesSVG c={c} p={playing} />;
+    case 'email-professionalism':   return <EmailProfSVG c={c} p={playing} />;
+    case 'phishing-game':           return <PhishingGameSVG c={c} p={playing} />;
+    case 'card-flip-parity':        return <CardFlipSVG c={c} p={playing} />;
+    case 'password-calculator':     return <PasswordCalcSVG c={c} p={playing} />;
+    case 'document-debugging':      return <DocDebuggingSVG c={c} p={playing} />;
+    case 'ai-format-compare':       return <AIFormatCompareSVG c={c} p={playing} />;
+    case 'report-decomposition':    return <ReportDecompSVG c={c} p={playing} />;
+    case 'template-patterns':       return <TemplatePatternsSVG c={c} p={playing} />;
+    case 'mini-report':             return <MiniReportSVG c={c} p={playing} />;
+    case 'plagiarism-detective':    return <PlagiarismDetSVG c={c} p={playing} />;
+    case 'citation-error-hunt':     return <CitationHuntSVG c={c} p={playing} />;
+    case 'human-spreadsheet':       return <HumanSpreadsheetSVG c={c} p={playing} />;
+    case 'formula-detective':       return <FormulaDetSVG c={c} p={playing} />;
+    case 'class-dataset':           return <ClassDatasetSVG c={c} p={playing} />;
+    case 'validation-rules':        return <ValidationRulesSVG c={c} p={playing} />;
+    case 'misleading-graphs':       return <MisleadingGraphsSVG c={c} p={playing} />;
+    case 'chart-types':             return <ChartTypesSVG c={c} p={playing} />;
+    case 'logic-gates':             return <LogicGatesSVG c={c} p={playing} />;
+    case 'decision-tree':           return <DecisionTreeSVG c={c} p={playing} />;
+    case 'grading-logic':           return <GradingLogicSVG c={c} p={playing} />;
+    case 'data-story':              return <DataStorySVG c={c} p={playing} />;
+    case 'quality-checklist':       return <QualityChecklistSVG c={c} p={playing} />;
+    case 'ai-content-detect':       return <AIContentDetectSVG c={c} p={playing} />;
+    case 'misinfo-flowchart':       return <MisinfoFlowchartSVG c={c} p={playing} />;
+    case 'human-router':            return <HumanRouterSVG c={c} p={playing} />;
+    case 'algorithm-olympics':      return <AlgorithmOlympicsSVG c={c} p={playing} />;
+    case 'practical-assessment':    return <PracticalAssessSVG c={c} p={playing} />;
+    case 'binary-necklace':         return <BinaryNecklaceSVG c={c} p={playing} />;
+    case 'algorithmic-art':         return <AlgorithmicArtSVG c={c} p={playing} />;
+    case 'compression-challenge':   return <CompressionSVG c={c} p={playing} />;
+    case 'shortest-path':           return <ShortestPathSVG c={c} p={playing} />;
+    case 'searching-challenge':     return <SearchingChallengeSVG c={c} p={playing} />;
+    case 'sorting-showdown':        return <SortingShowdownSVG c={c} p={playing} />;
     default:                        return <DefaultHeroSVG c={c} p={playing} />;
   }
 }
@@ -913,6 +949,1824 @@ function SamplingBiasSVG({ c, p }) {
       <rect x="60" y="90" width="120" height="16" rx="4" fill={c} fillOpacity={0.1} />
       <text x="120" y="101" textAnchor="middle" fill={c} fontSize="8" fontWeight="bold" fontFamily="monospace">
         {methods[method]} Sampling
+      </text>
+    </svg>
+  );
+}
+
+
+/* ─────────────────────────────────────
+   CL-008  File System Treasure Hunt
+   Animated folder tree with path
+   trace highlighting and file reveal
+   ───────────────────────────────────── */
+function FileTreasureHuntSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const folders = [
+    { x: 100, y: 8, w: 40, label: 'Root' },
+    { x: 55, y: 35, w: 38, label: 'Docs' },
+    { x: 145, y: 35, w: 38, label: 'Misc' },
+    { x: 30, y: 62, w: 36, label: 'Work' },
+    { x: 80, y: 62, w: 36, label: 'Old' },
+    { x: 130, y: 62, w: 36, label: 'Temp' },
+    { x: 170, y: 62, w: 36, label: 'Data' },
+  ];
+  const path = [0, 2, 3]; // Root → Misc → ... but treasure is in Work
+  const treasureIdx = 3;
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % 6), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Connecting lines */}
+      <line x1="120" y1="20" x2="74" y2="35" stroke={c} strokeWidth="1" opacity={0.12} />
+      <line x1="120" y1="20" x2="164" y2="35" stroke={c} strokeWidth="1" opacity={0.12} />
+      <line x1="74" y1="47" x2="48" y2="62" stroke={c} strokeWidth="1" opacity={0.12} />
+      <line x1="74" y1="47" x2="98" y2="62" stroke={c} strokeWidth="1" opacity={0.12} />
+      <line x1="164" y1="47" x2="148" y2="62" stroke={c} strokeWidth="1" opacity={0.12} />
+      <line x1="164" y1="47" x2="188" y2="62" stroke={c} strokeWidth="1" opacity={0.12} />
+      {/* Folder nodes */}
+      {folders.map((f, i) => {
+        const active = step > 0 && step <= path.length && path[step - 1] === i;
+        const found = step >= 4 && i === treasureIdx;
+        return (
+          <g key={i}>
+            <rect x={f.x} y={f.y} width={f.w} height={16} rx="3"
+              fill={c} fillOpacity={found ? 0.3 : active ? 0.18 : 0.05}
+              stroke={c} strokeOpacity={found ? 0.6 : active ? 0.4 : 0.12} strokeWidth="1" />
+            <text x={f.x + f.w / 2} y={f.y + 11} textAnchor="middle" fill={found || active ? c : 'var(--theme-muted)'}
+              fontSize="6.5" fontWeight={found ? 'bold' : 'normal'} fontFamily="monospace">{f.label}</text>
+          </g>
+        );
+      })}
+      {/* Treasure star */}
+      {step >= 4 && (
+        <motion.text x="48" y="90" textAnchor="middle" fill={c} fontSize="14"
+          initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200 }}>
+          ★
+        </motion.text>
+      )}
+      {/* Search indicator */}
+      <motion.circle cx={step < 4 ? folders[path[Math.min(step, path.length) - 1]]?.x + 20 || 120 : 48}
+        cy={step < 4 ? (folders[path[Math.min(step, path.length) - 1]]?.y || 8) + 8 : 82}
+        r="4" fill="none" stroke={c} strokeWidth="1.5" strokeOpacity={step > 0 ? 0.5 : 0}
+        animate={p && step > 0 ? { strokeOpacity: [0.3, 0.7, 0.3] } : {}}
+        transition={{ duration: 0.6, repeat: Infinity }} />
+      {/* File found label */}
+      {step >= 5 && (
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <rect x="140" y="82" width="70" height="16" rx="4" fill={c} fillOpacity={0.12} />
+          <text x="175" y="93" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace">FILE FOUND!</text>
+        </motion.g>
+      )}
+    </svg>
+  );
+}
+
+
+/* ─────────────────────────────────────
+   CL-009  Desktop Organisation Algorithm
+   Two-panel: scattered icons animate
+   into categorised groups following
+   numbered algorithm steps
+   ───────────────────────────────────── */
+function DesktopAlgorithmSVG({ c, p }) {
+  const [phase, setPhase] = useState(0);
+  const icons = [
+    { label: '.doc', sx: 25, sy: 20, tx: 152, ty: 22, cat: 0 },
+    { label: '.xls', sx: 50, sy: 55, tx: 152, ty: 38, cat: 0 },
+    { label: '.jpg', sx: 15, sy: 70, tx: 192, ty: 22, cat: 1 },
+    { label: '.png', sx: 85, sy: 15, tx: 192, ty: 38, cat: 1 },
+    { label: '.pdf', sx: 70, sy: 45, tx: 152, ty: 54, cat: 0 },
+    { label: '.mp3', sx: 40, sy: 85, tx: 192, ty: 54, cat: 1 },
+  ];
+  const steps = ['1. Scan files', '2. Categorise', '3. Move files', '4. Verify'];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPhase(s => (s + 1) % 6), 1100);
+    return () => clearInterval(id);
+  }, [p]);
+  const sorted = phase >= 3;
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Left panel — Desktop */}
+      <rect x="5" y="5" width="105" height="100" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="10" y="15" fill="var(--theme-muted)" fontSize="6" fontFamily="monospace">Desktop</text>
+      {/* Right panel — Organised */}
+      <rect x="135" y="5" width="100" height="100" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="140" y="15" fill="var(--theme-muted)" fontSize="6" fontFamily="monospace">Organised</text>
+      {/* Category labels */}
+      {sorted && (
+        <>
+          <text x="152" y="19" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>DOCS</text>
+          <text x="192" y="19" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>MEDIA</text>
+          <line x1="182" y1="15" x2="182" y2="70" stroke={c} strokeWidth="0.5" opacity={0.1} />
+        </>
+      )}
+      {/* File icons */}
+      {icons.map((ic, i) => (
+        <motion.g key={i}
+          animate={{ x: sorted ? ic.tx - ic.sx : 0, y: sorted ? ic.ty - ic.sy : 0 }}
+          transition={{ delay: sorted ? i * 0.12 : 0, type: 'spring', stiffness: 100, damping: 12 }}>
+          <rect x={ic.sx} y={ic.sy} width="24" height="12" rx="2"
+            fill={c} fillOpacity={phase > 0 ? 0.15 : 0.06} stroke={c} strokeOpacity={0.2} strokeWidth="0.7" />
+          <text x={ic.sx + 12} y={ic.sy + 8.5} textAnchor="middle" fill={c} fontSize="5.5" fontFamily="monospace">{ic.label}</text>
+        </motion.g>
+      ))}
+      {/* Algorithm steps panel */}
+      <rect x="115" y="75" width="55" height="28" rx="3" fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.08} />
+      {steps.map((s, i) => (
+        <text key={i} x="118" y={82 + i * 6.5} fill={i < phase ? c : 'var(--theme-muted)'}
+          fontSize="4.5" fontFamily="monospace" fontWeight={i < phase ? 'bold' : 'normal'} opacity={i < phase ? 0.7 : 0.3}>{s}</text>
+      ))}
+      {/* Arrow between panels */}
+      {phase >= 2 && (
+        <motion.path d="M112,55 L133,55" fill="none" stroke={c} strokeWidth="1.5" strokeOpacity={0.4}
+          markerEnd="url(#arrowDesk)" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+          transition={{ duration: 0.4 }} />
+      )}
+      <defs>
+        <marker id="arrowDesk" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M0,0 L6,3 L0,6 Z" fill={c} fillOpacity={0.4} />
+        </marker>
+      </defs>
+    </svg>
+  );
+}
+
+
+/* ─────────────────────────────────────
+   CL-010  AI Boundaries
+   Chat-style interface with traffic
+   light indicators: green = safe use,
+   red = unsafe, yellow = caution
+   ───────────────────────────────────── */
+function AIBoundariesSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const items = [
+    { q: 'Check grammar', status: 'green', y: 20 },
+    { q: 'Write my essay', status: 'red', y: 42 },
+    { q: 'Explain concept', status: 'green', y: 64 },
+    { q: 'Fake reference', status: 'red', y: 86 },
+  ];
+  const colMap = { green: '#3fb950', red: '#f85149', yellow: '#d29922' };
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % (items.length + 2)), 1000);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Chat window frame */}
+      <rect x="15" y="5" width="210" height="100" rx="6" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <rect x="15" y="5" width="210" height="14" rx="6" fill={c} fillOpacity={0.05} />
+      <text x="120" y="14" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>AI USAGE CHECK</text>
+      {/* Prompt items */}
+      {items.map((item, i) => {
+        const visible = i < step;
+        if (!visible) return null;
+        return (
+          <motion.g key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}>
+            {/* Prompt bubble */}
+            <rect x="25" y={item.y} width="120" height="14" rx="4" fill={c} fillOpacity={0.08} />
+            <text x="32" y={item.y + 10} fill={c} fontSize="6" fontFamily="monospace">"{item.q}"</text>
+            {/* Status indicator */}
+            <circle cx="170" cy={item.y + 7} r="5" fill={colMap[item.status]} fillOpacity={0.25}
+              stroke={colMap[item.status]} strokeWidth="1.5" />
+            <text x="170" y={item.y + 10} textAnchor="middle" fill={colMap[item.status]} fontSize="6" fontWeight="bold">
+              {item.status === 'green' ? '✓' : '✗'}
+            </text>
+            {/* Label */}
+            <text x="185" y={item.y + 10} fill={colMap[item.status]} fontSize="5.5" fontFamily="monospace" fontWeight="bold">
+              {item.status === 'green' ? 'SAFE' : 'AVOID'}
+            </text>
+          </motion.g>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-011  Email Professionalism ─── */
+function EmailProfSVG({ c, p }) {
+  const [hi, setHi] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setHi(h => (h + 1) % 2), 1400);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Bad email */}
+      <rect x="10" y="10" width="100" height="90" rx="5" fill={c} fillOpacity={0.02} stroke={hi === 0 ? '#f85149' : c} strokeOpacity={hi === 0 ? 0.6 : 0.1} strokeWidth={hi === 0 ? 1.5 : 0.7} />
+      <text x="60" y="22" textAnchor="middle" fill="#f85149" fontSize="6" fontWeight="bold" fontFamily="monospace">INFORMAL ✗</text>
+      <rect x="18" y="28" width="84" height="8" rx="2" fill="#f85149" fillOpacity={0.08} />
+      <text x="22" y="34" fill={c} fontSize="5" fontFamily="monospace">"hey bro wats up..."</text>
+      <rect x="18" y="40" width="84" height="8" rx="2" fill="#f85149" fillOpacity={0.05} />
+      <text x="22" y="46" fill={c} fontSize="5" fontFamily="monospace">"can u send me the"</text>
+      <rect x="18" y="52" width="84" height="8" rx="2" fill="#f85149" fillOpacity={0.05} />
+      <text x="22" y="58" fill={c} fontSize="5" fontFamily="monospace">"thing lol thx"</text>
+      <text x="22" y="72" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">No subject line</text>
+      <text x="22" y="80" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">No greeting</text>
+      <text x="22" y="88" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Slang / abbrevs</text>
+      {/* Good email */}
+      <rect x="130" y="10" width="100" height="90" rx="5" fill={c} fillOpacity={0.02} stroke={hi === 1 ? '#3fb950' : c} strokeOpacity={hi === 1 ? 0.6 : 0.1} strokeWidth={hi === 1 ? 1.5 : 0.7} />
+      <text x="180" y="22" textAnchor="middle" fill="#3fb950" fontSize="6" fontWeight="bold" fontFamily="monospace">PROFESSIONAL ✓</text>
+      <rect x="138" y="28" width="84" height="8" rx="2" fill="#3fb950" fillOpacity={0.08} />
+      <text x="142" y="34" fill={c} fontSize="5" fontFamily="monospace">"Dear Sir/Madam,"</text>
+      <rect x="138" y="40" width="84" height="8" rx="2" fill="#3fb950" fillOpacity={0.05} />
+      <text x="142" y="46" fill={c} fontSize="5" fontFamily="monospace">"I am writing to"</text>
+      <rect x="138" y="52" width="84" height="8" rx="2" fill="#3fb950" fillOpacity={0.05} />
+      <text x="142" y="58" fill={c} fontSize="5" fontFamily="monospace">"Kind regards, J."</text>
+      <text x="142" y="72" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Clear subject</text>
+      <text x="142" y="80" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Formal greeting</text>
+      <text x="142" y="88" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Proper language</text>
+      {/* Highlight arrow */}
+      <motion.polygon points={hi === 0 ? "60,102 55,108 65,108" : "180,102 175,108 185,108"}
+        fill={hi === 0 ? '#f85149' : '#3fb950'} fillOpacity={0.5}
+        animate={p ? { y: [0, -2, 0] } : {}} transition={{ duration: 0.6, repeat: Infinity }} />
+    </svg>
+  );
+}
+
+
+/* ── CL-012  Phishing Game ─────────── */
+function PhishingGameSVG({ c, p }) {
+  const [scan, setScan] = useState(0);
+  const flags = [
+    { x: 30, y: 38, w: 80, label: 'From: n0-reply@bnak.com', bad: true },
+    { x: 30, y: 52, w: 80, label: 'URGENT! Act NOW!!!', bad: true },
+    { x: 30, y: 66, w: 80, label: 'Click: http://bit.ly/x3k', bad: true },
+    { x: 30, y: 80, w: 80, label: 'Dear Valued Customer', bad: false },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setScan(s => (s + 1) % (flags.length + 2)), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Envelope */}
+      <rect x="15" y="8" width="130" height="95" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="80" y="20" textAnchor="middle" fill={c} fontSize="7" fontWeight="bold" fontFamily="monospace" opacity={0.5}>INCOMING EMAIL</text>
+      <line x1="15" y1="28" x2="145" y2="28" stroke={c} strokeOpacity={0.08} />
+      {flags.map((f, i) => {
+        const revealed = i < scan;
+        return (
+          <motion.g key={i} initial={{ opacity: 0.4 }} animate={{ opacity: revealed ? 1 : 0.4 }}>
+            <rect x={f.x} y={f.y} width={f.w} height="10" rx="2" fill={revealed && f.bad ? '#f85149' : c} fillOpacity={revealed && f.bad ? 0.12 : 0.04} stroke={revealed && f.bad ? '#f85149' : 'none'} strokeWidth="0.7" strokeOpacity={0.5} />
+            <text x={f.x + 3} y={f.y + 7.5} fill={revealed && f.bad ? '#f85149' : c} fontSize="5" fontFamily="monospace">{f.label}</text>
+          </motion.g>
+        );
+      })}
+      {/* Magnifying glass */}
+      <motion.g animate={p ? { x: [0, 0, 0, 0, 0], y: scan < flags.length ? [0, 14 * scan] : [14 * (flags.length - 1)] } : {}}
+        transition={{ duration: 0.4 }}>
+        <circle cx="155" cy="42" r="12" fill="none" stroke={c} strokeWidth="1.5" strokeOpacity={0.3} />
+        <line x1="163" y1="51" x2="170" y2="58" stroke={c} strokeWidth="2" strokeOpacity={0.3} />
+        <text x="155" y="45" textAnchor="middle" fill={c} fontSize="7" opacity={0.4}>🔍</text>
+      </motion.g>
+      {/* Result panel */}
+      <rect x="160" y="15" width="70" height="85" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="195" y="27" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>VERDICT</text>
+      {scan >= flags.length && (
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <rect x="170" y="40" width="50" height="18" rx="4" fill="#f85149" fillOpacity={0.15} stroke="#f85149" strokeOpacity={0.4} />
+          <text x="195" y="52" textAnchor="middle" fill="#f85149" fontSize="7" fontWeight="bold" fontFamily="monospace">PHISHING</text>
+          <text x="195" y="70" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">3 red flags</text>
+        </motion.g>
+      )}
+    </svg>
+  );
+}
+
+
+/* ── CL-013  Card Flip (Parity) ────── */
+function CardFlipSVG({ c, p }) {
+  const gridSize = 5;
+  const [flipPos, setFlipPos] = useState({ r: 2, c: 3 });
+  const [showParity, setShowParity] = useState(false);
+  const baseGrid = useMemo(() => {
+    const g = [];
+    for (let r = 0; r < gridSize; r++) {
+      const row = [];
+      for (let cl = 0; cl < gridSize; cl++) row.push((r + cl) % 2 === 0 ? 1 : 0);
+      g.push(row);
+    }
+    return g;
+  }, []);
+  useEffect(() => {
+    if (!p) return;
+    let step = 0;
+    const id = setInterval(() => {
+      step = (step + 1) % 6;
+      if (step === 0) { setFlipPos({ r: Math.floor(Math.random() * gridSize), c: Math.floor(Math.random() * gridSize) }); setShowParity(false); }
+      if (step === 2) setShowParity(true);
+    }, 800);
+    return () => clearInterval(id);
+  }, [p]);
+  const cellSz = 12, gap = 2, ox = 55, oy = 18;
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>PARITY BIT — FIND THE FLIP</text>
+      {baseGrid.map((row, ri) => row.map((val, ci) => {
+        const flipped = ri === flipPos.r && ci === flipPos.c;
+        const shown = flipped ? 1 - val : val;
+        return (
+          <motion.rect key={`${ri}-${ci}`} x={ox + ci * (cellSz + gap)} y={oy + ri * (cellSz + gap)}
+            width={cellSz} height={cellSz} rx="2"
+            fill={shown ? c : 'none'} fillOpacity={shown ? 0.3 : 0}
+            stroke={flipped && showParity ? '#f85149' : c} strokeWidth={flipped && showParity ? 1.5 : 0.7} strokeOpacity={flipped && showParity ? 0.8 : 0.15}
+            animate={flipped && showParity ? { scale: [1, 1.15, 1] } : {}} transition={{ duration: 0.4, repeat: Infinity }} />
+        );
+      }))}
+      {/* Row/col highlight */}
+      {showParity && (
+        <>
+          <motion.rect x={ox - 3} y={oy + flipPos.r * (cellSz + gap) - 2} width={gridSize * (cellSz + gap) + 4} height={cellSz + 4} rx="3" fill="#f85149" fillOpacity={0.06} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+          <motion.rect x={ox + flipPos.c * (cellSz + gap) - 2} y={oy - 3} width={cellSz + 4} height={gridSize * (cellSz + gap) + 4} rx="3" fill="#f85149" fillOpacity={0.06} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+        </>
+      )}
+      {/* Legend */}
+      <rect x="160" y="25" width="70" height="60" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="165" y="35" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Row parity check</text>
+      <text x="165" y="45" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Col parity check</text>
+      <text x="165" y="58" fill={showParity ? '#f85149' : 'var(--theme-muted)'} fontSize="5.5" fontWeight="bold" fontFamily="monospace">
+        {showParity ? `Found: R${flipPos.r + 1} C${flipPos.c + 1}` : 'Scanning...'}
+      </text>
+      <rect x="165" y="64" width="8" height="8" rx="1" fill={c} fillOpacity={0.3} stroke={c} strokeOpacity={0.2} />
+      <text x="177" y="70.5" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">= 1 (filled)</text>
+      <rect x="165" y="75" width="8" height="8" rx="1" fill="none" stroke={c} strokeOpacity={0.15} />
+      <text x="177" y="81.5" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">= 0 (empty)</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-014  Password Strength Calc ── */
+function PasswordCalcSVG({ c, p }) {
+  const [phase, setPhase] = useState(0);
+  const levels = [
+    { dots: 4, label: '4 digits', combos: '10,000', pct: 15, col: '#f85149' },
+    { dots: 6, label: '6 lower', combos: '308M', pct: 40, col: '#d29922' },
+    { dots: 8, label: '8 mixed', combos: '2.1B', pct: 70, col: '#d29922' },
+    { dots: 12, label: '12 all', combos: '475T', pct: 95, col: '#3fb950' },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPhase(s => (s + 1) % levels.length), 1400);
+    return () => clearInterval(id);
+  }, [p]);
+  const lv = levels[phase];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="14" textAnchor="middle" fill={c} fontSize="7" fontWeight="bold" fontFamily="monospace" opacity={0.5}>PASSWORD STRENGTH</text>
+      {/* Password field */}
+      <rect x="40" y="22" width="160" height="18" rx="4" fill={c} fillOpacity={0.03} stroke={c} strokeOpacity={0.12} />
+      {Array.from({ length: lv.dots }).map((_, i) => (
+        <motion.circle key={i} cx={55 + i * 14} cy="31" r="3.5" fill={c} fillOpacity={0.5}
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.06 }} />
+      ))}
+      {/* Strength bar */}
+      <rect x="40" y="48" width="160" height="10" rx="3" fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.08} />
+      <motion.rect x="40" y="48" width={160 * lv.pct / 100} height="10" rx="3" fill={lv.col} fillOpacity={0.35}
+        animate={{ width: 160 * lv.pct / 100 }} transition={{ duration: 0.5 }} />
+      <text x={40 + 160 * lv.pct / 100 + 4} y="56" fill={lv.col} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{lv.pct}%</text>
+      {/* Info boxes */}
+      <rect x="30" y="68" width="80" height="32" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="35" y="79" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Type:</text>
+      <text x="55" y="79" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{lv.label}</text>
+      <text x="35" y="92" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Combos:</text>
+      <text x="65" y="92" fill={lv.col} fontSize="6" fontWeight="bold" fontFamily="monospace">{lv.combos}</text>
+      <rect x="130" y="68" width="80" height="32" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="135" y="79" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Crack time:</text>
+      <text x="135" y="92" fill={lv.col} fontSize="6" fontWeight="bold" fontFamily="monospace">
+        {phase === 0 ? '< 1 sec' : phase === 1 ? '~5 min' : phase === 2 ? '~2 yrs' : '1000+ yrs'}
+      </text>
+    </svg>
+  );
+}
+
+
+/* ── CL-015  Doc Debugging ─────────── */
+function DocDebuggingSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const bugs = [
+    { y: 30, label: 'Spelling error' },
+    { y: 46, label: 'Missing ref' },
+    { y: 62, label: 'Wrong format' },
+    { y: 78, label: 'Broken link' },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % (bugs.length + 2)), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Document */}
+      <rect x="20" y="8" width="120" height="95" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="80" y="20" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>DOCUMENT</text>
+      {bugs.map((b, i) => {
+        const fixed = i < step;
+        return (
+          <g key={i}>
+            {/* Text line */}
+            <rect x="30" y={b.y} width="90" height="4" rx="1" fill={c} fillOpacity={0.1} />
+            {/* Wavy underline or fix */}
+            {!fixed && (
+              <motion.path d={`M30,${b.y + 6} Q40,${b.y + 3} 50,${b.y + 6} T70,${b.y + 6} T90,${b.y + 6}`}
+                fill="none" stroke="#f85149" strokeWidth="1" strokeOpacity={0.6}
+                animate={p ? { strokeOpacity: [0.3, 0.7, 0.3] } : {}} transition={{ duration: 1, repeat: Infinity }} />
+            )}
+            {/* Bug / fix icon */}
+            <motion.text x="125" y={b.y + 5} fill={fixed ? '#3fb950' : '#f85149'} fontSize="7" fontFamily="monospace"
+              animate={fixed ? { scale: [1.3, 1] } : {}} transition={{ duration: 0.3 }}>
+              {fixed ? '✓' : '🐛'}
+            </motion.text>
+          </g>
+        );
+      })}
+      {/* Debug console */}
+      <rect x="155" y="8" width="75" height="95" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="192" y="20" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>DEBUG LOG</text>
+      {bugs.map((b, i) => {
+        if (i >= step) return null;
+        return (
+          <motion.g key={`log-${i}`} initial={{ opacity: 0, x: 5 }} animate={{ opacity: 1, x: 0 }}>
+            <text x="162" y={32 + i * 14} fill="#3fb950" fontSize="5" fontFamily="monospace">✓ Fixed:</text>
+            <text x="162" y={40 + i * 14} fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">{b.label}</text>
+          </motion.g>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-016  AI Format Compare ─────── */
+function AIFormatCompareSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const rows = [
+    { label: 'Structure', human: true, ai: true },
+    { label: 'Citations', human: true, ai: false },
+    { label: 'Tone', human: true, ai: false },
+    { label: 'Grammar', human: false, ai: true },
+    { label: 'Original', human: true, ai: false },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % (rows.length + 2)), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Left: Human */}
+      <rect x="10" y="5" width="105" height="100" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="62" y="17" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>HUMAN</text>
+      <rect x="20" y="22" width="85" height="4" rx="1" fill={c} fillOpacity={0.08} />
+      <rect x="20" y="30" width="70" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      <rect x="20" y="36" width="78" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      <rect x="20" y="42" width="60" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      {/* Right: AI */}
+      <rect x="125" y="5" width="105" height="100" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="177" y="17" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>AI</text>
+      <rect x="135" y="22" width="85" height="4" rx="1" fill={c} fillOpacity={0.08} />
+      <rect x="135" y="30" width="75" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      <rect x="135" y="36" width="80" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      <rect x="135" y="42" width="65" height="3" rx="1" fill={c} fillOpacity={0.05} />
+      {/* Comparison rows */}
+      {rows.map((r, i) => {
+        if (i >= step) return null;
+        return (
+          <motion.g key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <text x="62" y={58 + i * 11} textAnchor="middle" fill={r.human ? '#3fb950' : '#f85149'} fontSize="7" fontWeight="bold">{r.human ? '✓' : '✗'}</text>
+            <text x="120" y={58 + i * 11} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{r.label}</text>
+            <text x="177" y={58 + i * 11} textAnchor="middle" fill={r.ai ? '#3fb950' : '#f85149'} fontSize="7" fontWeight="bold">{r.ai ? '✓' : '✗'}</text>
+          </motion.g>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-017  Report Decomposition ──── */
+function ReportDecompSVG({ c, p }) {
+  const [phase, setPhase] = useState(0);
+  const blocks = [
+    { label: 'TOC', sx: 75, sy: 25, tx: 15, ty: 15, w: 40, h: 12 },
+    { label: 'HEADING', sx: 75, sy: 40, tx: 65, ty: 15, w: 50, h: 12 },
+    { label: 'BODY', sx: 75, sy: 55, tx: 125, ty: 15, w: 45, h: 12 },
+    { label: 'FIGURE', sx: 75, sy: 70, tx: 15, ty: 55, w: 45, h: 12 },
+    { label: 'CAPTION', sx: 75, sy: 85, tx: 70, ty: 55, w: 50, h: 12 },
+    { label: 'REFS', sx: 80, sy: 95, tx: 135, ty: 55, w: 40, h: 12 },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPhase(s => (s + 1) % 4), 1500);
+    return () => clearInterval(id);
+  }, [p]);
+  const spread = phase >= 2;
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="10" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>
+        {spread ? 'COMPONENTS' : 'FULL REPORT'}
+      </text>
+      {!spread && (
+        <rect x="60" y="15" width="70" height="90" rx="4" fill={c} fillOpacity={0.03} stroke={c} strokeOpacity={0.12} />
+      )}
+      {blocks.map((b, i) => {
+        const colors = ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#58a6ff'];
+        return (
+          <motion.g key={i}
+            animate={{ x: spread ? b.tx - b.sx : 0, y: spread ? b.ty - b.sy : 0 }}
+            transition={{ delay: i * 0.1, type: 'spring', stiffness: 80, damping: 14 }}>
+            <rect x={b.sx} y={b.sy} width={spread ? b.w + 15 : b.w} height={spread ? b.h + 8 : b.h} rx="3"
+              fill={colors[i]} fillOpacity={spread ? 0.12 : 0.06} stroke={colors[i]} strokeOpacity={0.3} strokeWidth="0.7" />
+            <text x={b.sx + (spread ? (b.w + 15) / 2 : b.w / 2)} y={b.sy + (spread ? (b.h + 8) / 2 + 2 : b.h / 2 + 2)}
+              textAnchor="middle" fill={colors[i]} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{b.label}</text>
+          </motion.g>
+        );
+      })}
+      {spread && (
+        <>
+          {blocks.map((b, i) => (
+            <motion.line key={`ln-${i}`} x1={b.tx + 20} y1={b.ty + 10} x2={120} y2={50}
+              stroke={c} strokeWidth="0.5" strokeOpacity={0.08} strokeDasharray="2,2"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.5 + i * 0.1 }} />
+          ))}
+        </>
+      )}
+    </svg>
+  );
+}
+
+
+/* ── CL-018  Template Patterns ─────── */
+function TemplatePatternsSVG({ c, p }) {
+  const [hi, setHi] = useState(0);
+  const elements = ['HEADER', 'BODY', 'FIGURE', 'FOOTER'];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setHi(h => (h + 1) % elements.length), 1200);
+    return () => clearInterval(id);
+  }, [p]);
+  const docs = [
+    { x: 10, y: 15 }, { x: 67, y: 15 }, { x: 124, y: 15 }, { x: 181, y: 15 },
+  ];
+  const elY = [28, 46, 64, 80];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="10" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>COMMON TEMPLATE PATTERNS</text>
+      {docs.map((d, di) => (
+        <g key={di}>
+          <rect x={d.x} y={d.y} width="48" height="80" rx="3" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+          <text x={d.x + 24} y={d.y + 8} textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Doc {di + 1}</text>
+          {elements.map((el, ei) => {
+            const active = ei === hi;
+            return (
+              <motion.rect key={ei} x={d.x + 4} y={elY[ei]} width="40" height="10" rx="2"
+                fill={active ? c : c} fillOpacity={active ? 0.2 : 0.04}
+                stroke={active ? c : 'none'} strokeWidth={active ? 1 : 0} strokeOpacity={active ? 0.5 : 0}
+                animate={active ? { fillOpacity: [0.1, 0.25, 0.1] } : {}}
+                transition={{ duration: 0.8, repeat: Infinity }} />
+            );
+          })}
+        </g>
+      ))}
+      {/* Label for highlighted element */}
+      <motion.text x="120" y="105" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace"
+        animate={p ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.4 }} transition={{ duration: 1.2, repeat: Infinity }}>
+        Common: {elements[hi]}
+      </motion.text>
+    </svg>
+  );
+}
+
+
+/* ── CL-019  Mini Report Builder ───── */
+function MiniReportSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % 7), 700);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Document frame */}
+      <rect x="55" y="5" width="130" height="100" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      {/* Title bar */}
+      {step >= 1 && (
+        <motion.g initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}>
+          <rect x="65" y="10" width="110" height="10" rx="2" fill={c} fillOpacity={0.15} />
+          <text x="120" y="18" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace">REPORT TITLE</text>
+        </motion.g>
+      )}
+      {/* Body lines */}
+      {step >= 2 && [28, 34, 40, 46].map((y, i) => (
+        <motion.rect key={y} x="65" y={y} width={90 - i * 10} height="3" rx="1" fill={c} fillOpacity={0.08}
+          initial={{ width: 0 }} animate={{ width: 90 - i * 10 }} transition={{ delay: i * 0.1 }} />
+      ))}
+      {/* Chart placeholder */}
+      {step >= 3 && (
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <rect x="65" y="54" width="50" height="25" rx="3" fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.1} />
+          {[0, 1, 2, 3, 4].map(i => (
+            <motion.rect key={i} x={70 + i * 9} y={74 - (10 + i * 3)} width="5" height={10 + i * 3} rx="1" fill={c} fillOpacity={0.2}
+              initial={{ height: 0, y: 74 }} animate={{ height: 10 + i * 3, y: 74 - (10 + i * 3) }} transition={{ delay: i * 0.08 }} />
+          ))}
+          <text x="90" y="83" textAnchor="middle" fill="var(--theme-muted)" fontSize="4" fontFamily="monospace">Fig. 1</text>
+        </motion.g>
+      )}
+      {/* Table */}
+      {step >= 4 && (
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <rect x="120" y="54" width="50" height="25" rx="3" fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.1} />
+          {[0, 1, 2].map(r => [0, 1].map(col => (
+            <rect key={`${r}-${col}`} x={124 + col * 23} y={58 + r * 7} width="20" height="5" rx="1" fill={c} fillOpacity={r === 0 ? 0.12 : 0.05} />
+          )))}
+        </motion.g>
+      )}
+      {/* References */}
+      {step >= 5 && (
+        <motion.g initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}>
+          <line x1="65" y1="88" x2="175" y2="88" stroke={c} strokeOpacity={0.1} />
+          <text x="65" y="94" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">References</text>
+          <rect x="65" y="96" width="80" height="2.5" rx="1" fill={c} fillOpacity={0.06} />
+          <rect x="65" y="100" width="65" height="2.5" rx="1" fill={c} fillOpacity={0.06} />
+        </motion.g>
+      )}
+      {/* Progress */}
+      <text x="20" y="55" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace" style={{ writingMode: 'tb' }}>
+        {Math.min(step, 5)}/5
+      </text>
+    </svg>
+  );
+}
+
+
+/* ── CL-020  Plagiarism Detection ──── */
+function PlagiarismDetSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const matches = [
+    { ly: 30, ry: 25, bad: true, label: 'Copy-paste' },
+    { ly: 48, ry: 50, bad: false, label: 'Cited' },
+    { ly: 66, ry: 70, bad: true, label: 'Paraphrase' },
+    { ly: 84, ry: 88, bad: false, label: 'Original' },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % (matches.length + 2)), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Left text block */}
+      <rect x="10" y="10" width="85" height="95" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="52" y="22" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>SOURCE</text>
+      {matches.map((m, i) => (
+        <rect key={`l-${i}`} x="18" y={m.ly} width="68" height="8" rx="2"
+          fill={i < step ? (m.bad ? '#f85149' : '#3fb950') : c} fillOpacity={i < step ? 0.12 : 0.05} />
+      ))}
+      {/* Right text block */}
+      <rect x="145" y="10" width="85" height="95" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      <text x="187" y="22" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.5}>STUDENT</text>
+      {matches.map((m, i) => (
+        <rect key={`r-${i}`} x="153" y={m.ry} width="68" height="8" rx="2"
+          fill={i < step ? (m.bad ? '#f85149' : '#3fb950') : c} fillOpacity={i < step ? 0.12 : 0.05} />
+      ))}
+      {/* Connecting lines */}
+      {matches.map((m, i) => {
+        if (i >= step) return null;
+        return (
+          <motion.line key={`c-${i}`} x1="95" y1={m.ly + 4} x2="145" y2={m.ry + 4}
+            stroke={m.bad ? '#f85149' : '#3fb950'} strokeWidth="1.2" strokeOpacity={0.5}
+            strokeDasharray={m.bad ? '4,2' : 'none'}
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4 }} />
+        );
+      })}
+      {/* Labels in middle */}
+      {matches.map((m, i) => {
+        if (i >= step) return null;
+        return (
+          <motion.text key={`t-${i}`} x="120" y={(m.ly + m.ry) / 2 + 4} textAnchor="middle"
+            fill={m.bad ? '#f85149' : '#3fb950'} fontSize="4.5" fontWeight="bold" fontFamily="monospace"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            {m.label}
+          </motion.text>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-021  Citation Hunt ─────────── */
+function CitationHuntSVG({ c, p }) {
+  const [cursor, setCursor] = useState(-1);
+  const refs = [
+    { label: 'Smith (2024)', ok: true },
+    { label: 'et al. [??]', ok: false },
+    { label: 'Jones, p.12', ok: true },
+    { label: '(no date)', ok: false },
+    { label: 'Lee (2023)', ok: true },
+    { label: 'URL broken', ok: false },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setCursor(s => (s + 1) % (refs.length + 2)), 700);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="7" fontWeight="bold" fontFamily="monospace" opacity={0.5}>CITATION CHECKER</text>
+      {/* Reference list */}
+      <rect x="25" y="18" width="140" height="88" rx="5" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      {refs.map((r, i) => {
+        const scanned = i <= cursor;
+        const fixed = scanned && !r.ok;
+        const col = !scanned ? 'var(--theme-muted)' : r.ok ? '#3fb950' : (fixed ? '#3fb950' : '#f85149');
+        return (
+          <g key={i}>
+            <rect x="32" y={24 + i * 13} width="125" height="10" rx="2"
+              fill={scanned && !r.ok ? '#f85149' : c} fillOpacity={scanned ? 0.08 : 0.03} />
+            <text x="38" y={31 + i * 13} fill={col} fontSize="5.5" fontFamily="monospace">
+              [{i + 1}] {r.label}
+            </text>
+            {scanned && (
+              <motion.text x="150" y={31 + i * 13} fill={r.ok ? '#3fb950' : '#f85149'} fontSize="7" fontWeight="bold"
+                initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                {r.ok ? '✓' : '✗'}
+              </motion.text>
+            )}
+          </g>
+        );
+      })}
+      {/* Scan cursor */}
+      {cursor >= 0 && cursor < refs.length && (
+        <motion.line x1="28" y1={24 + cursor * 13} x2="28" y2={34 + cursor * 13}
+          stroke={c} strokeWidth="2" strokeOpacity={0.5}
+          animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.4, repeat: Infinity }} />
+      )}
+      {/* Summary */}
+      <rect x="180" y="20" width="52" height="82" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="206" y="32" textAnchor="middle" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>SUMMARY</text>
+      <text x="186" y="48" fill="#3fb950" fontSize="5" fontFamily="monospace">✓ Valid: {refs.filter((r, i) => i <= cursor && r.ok).length}</text>
+      <text x="186" y="60" fill="#f85149" fontSize="5" fontFamily="monospace">✗ Error: {refs.filter((r, i) => i <= cursor && !r.ok).length}</text>
+      <text x="186" y="75" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Total: {refs.length}</text>
+      <rect x="186" y="82" width="40" height="6" rx="2" fill={c} fillOpacity={0.04} />
+      <motion.rect x="186" y="82" width={40 * Math.min(cursor + 1, refs.length) / refs.length} height="6" rx="2" fill={c} fillOpacity={0.2}
+        animate={{ width: 40 * Math.min(Math.max(cursor + 1, 0), refs.length) / refs.length }} />
+      <text x="206" y="97" textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">
+        {Math.min(Math.max(cursor + 1, 0), refs.length)}/{refs.length} checked
+      </text>
+    </svg>
+  );
+}
+
+
+/* ── CL-022  Human Spreadsheet ─────── */
+function HumanSpreadsheetSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const cells = [
+    { x: 60, y: 30, val: 5 }, { x: 100, y: 30, val: 3 }, { x: 140, y: 30, val: '=A+B' },
+    { x: 60, y: 55, val: 8 }, { x: 100, y: 55, val: 2 }, { x: 140, y: 55, val: '=A+B' },
+    { x: 60, y: 80, val: '=SUM' }, { x: 100, y: 80, val: '=SUM' }, { x: 140, y: 80, val: '?' },
+  ];
+  const results = [8, 10, 13, 5, 18, '?'];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % 6), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>HUMAN SPREADSHEET</text>
+      {/* Column headers */}
+      {['A', 'B', 'C'].map((h, i) => (
+        <text key={h} x={73 + i * 40} y="24" textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.4}>{h}</text>
+      ))}
+      {/* Row headers */}
+      {['1', '2', '3'].map((h, i) => (
+        <text key={h} x="48" y={38 + i * 25} textAnchor="middle" fill={c} fontSize="6" fontWeight="bold" fontFamily="monospace" opacity={0.4}>{h}</text>
+      ))}
+      {/* Grid */}
+      {cells.map((cell, i) => {
+        const active = i === step;
+        return (
+          <g key={i}>
+            <rect x={cell.x - 13} y={cell.y - 5} width="33" height="18" rx="2"
+              fill={active ? c : c} fillOpacity={active ? 0.12 : 0.03}
+              stroke={active ? c : c} strokeOpacity={active ? 0.4 : 0.08} strokeWidth={active ? 1.2 : 0.5} />
+            <text x={cell.x + 3} y={cell.y + 8} textAnchor="middle" fill={active ? c : 'var(--theme-muted)'}
+              fontSize="6" fontFamily="monospace" fontWeight={active ? 'bold' : 'normal'}>{cell.val}</text>
+          </g>
+        );
+      })}
+      {/* People passing values */}
+      {step > 0 && step < 5 && (
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <text x="25" y={35 + Math.floor(step / 3) * 25} fontSize="10">👤</text>
+          <motion.line x1="38" y1={35 + Math.floor(step / 3) * 25 - 3}
+            x2={cells[step].x - 13} y2={cells[step].y + 4}
+            stroke={c} strokeWidth="1" strokeOpacity={0.3} strokeDasharray="3,2"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.3 }} />
+        </motion.g>
+      )}
+      {/* Result sidebar */}
+      <rect x="185" y="22" width="45" height="78" rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      <text x="207" y="32" textAnchor="middle" fill={c} fontSize="5" fontWeight="bold" fontFamily="monospace" opacity={0.4}>RESULTS</text>
+      {cells.filter((_, i) => i < step && i % 3 === 2).map((cell, i) => (
+        <text key={i} x="207" y={44 + i * 14} textAnchor="middle" fill="#3fb950" fontSize="6" fontFamily="monospace" fontWeight="bold">
+          Row {i + 1}: {results[i]}
+        </text>
+      ))}
+    </svg>
+  );
+}
+
+
+/* ── CL-023  Formula Detective ─────── */
+function FormulaDetSVG({ c, p }) {
+  const [reveal, setReveal] = useState(-1);
+  const cells = [
+    { x: 40, y: 30, val: '10', formula: null },
+    { x: 80, y: 30, val: '20', formula: null },
+    { x: 120, y: 30, val: '30', formula: '=A1+B1' },
+    { x: 40, y: 55, val: '5', formula: null },
+    { x: 80, y: 55, val: '15', formula: null },
+    { x: 120, y: 55, val: '20', formula: '=A2+B2' },
+    { x: 160, y: 30, val: '60', formula: '=SUM(C)' },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setReveal(s => (s + 1) % (cells.length + 2)), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>FORMULA DETECTIVE</text>
+      {/* Column headers */}
+      {['A', 'B', 'C', 'D'].map((h, i) => (
+        <text key={h} x={53 + i * 40} y="24" textAnchor="middle" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace" opacity={0.4}>{h}</text>
+      ))}
+      {/* Cells */}
+      {cells.map((cell, i) => {
+        const isRevealed = i === reveal && cell.formula;
+        return (
+          <g key={i}>
+            <rect x={cell.x - 15} y={cell.y - 6} width="35" height="18" rx="2"
+              fill={isRevealed ? c : c} fillOpacity={isRevealed ? 0.15 : 0.03}
+              stroke={isRevealed ? '#3fb950' : c} strokeOpacity={isRevealed ? 0.6 : 0.08} strokeWidth={isRevealed ? 1.2 : 0.5} />
+            <text x={cell.x + 2} y={cell.y + 7} textAnchor="middle"
+              fill={isRevealed ? '#3fb950' : 'var(--theme-muted)'} fontSize="6" fontFamily="monospace" fontWeight={isRevealed ? 'bold' : 'normal'}>
+              {isRevealed ? cell.formula : cell.val}
+            </text>
+            {/* Magnifying glass on active */}
+            {i === reveal && cell.formula && (
+              <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                <circle cx={cell.x + 20} cy={cell.y - 4} r="6" fill="none" stroke={c} strokeWidth="1" strokeOpacity={0.3} />
+                <text x={cell.x + 20} y={cell.y - 1} textAnchor="middle" fontSize="5" fill={c} opacity={0.5}>?</text>
+              </motion.g>
+            )}
+          </g>
+        );
+      })}
+      {/* Formula bar */}
+      <rect x="20" y="80" width="200" height="22" rx="4" fill={c} fillOpacity={0.03} stroke={c} strokeOpacity={0.1} />
+      <text x="25" y="89" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">fx</text>
+      <line x1="37" y1="82" x2="37" y2="100" stroke={c} strokeOpacity={0.1} />
+      {reveal >= 0 && reveal < cells.length && cells[reveal].formula && (
+        <motion.text x="45" y="93" fill="#3fb950" fontSize="6.5" fontWeight="bold" fontFamily="monospace"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          {cells[reveal].formula} → {cells[reveal].val}
+        </motion.text>
+      )}
+      {reveal >= 0 && reveal < cells.length && !cells[reveal].formula && (
+        <text x="45" y="93" fill="var(--theme-muted)" fontSize="6" fontFamily="monospace">
+          Raw value: {cells[reveal].val}
+        </text>
+      )}
+    </svg>
+  );
+}
+
+
+/* ── CL-024  Class Dataset Builder ─── */
+function ClassDatasetSVG({ c, p }) {
+  const [added, setAdded] = useState(0);
+  const people = [
+    { name: 'Ali', age: 20, fav: 'Blue' },
+    { name: 'Sam', age: 19, fav: 'Red' },
+    { name: 'Jo', age: 21, fav: 'Green' },
+    { name: 'Lee', age: 20, fav: 'Blue' },
+    { name: 'Mia', age: 22, fav: 'Red' },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setAdded(s => (s + 1) % (people.length + 2)), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>CLASS DATASET BUILDER</text>
+      {/* People icons on left */}
+      {people.map((pr, i) => (
+        <g key={i}>
+          <text x="22" y={30 + i * 16} fontSize="10" opacity={i < added ? 0.3 : 0.7}>👤</text>
+          <text x="36" y={30 + i * 16} fill={i < added ? 'var(--theme-muted)' : c} fontSize="5" fontFamily="monospace">{pr.name}</text>
+          {/* Arrow to table */}
+          {i < added && (
+            <motion.line x1="52" y1={28 + i * 16} x2="80" y2={38 + i * 12}
+              stroke={c} strokeWidth="0.8" strokeOpacity={0.2} strokeDasharray="2,2"
+              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.3 }} />
+          )}
+        </g>
+      ))}
+      {/* Table */}
+      <rect x="80" y="18" width="150" height={14 + Math.min(added, people.length) * 12} rx="4" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.1} />
+      {/* Header */}
+      <rect x="80" y="18" width="150" height="12" rx="4" fill={c} fillOpacity={0.08} />
+      {['Name', 'Age', 'Fav Colour'].map((h, i) => (
+        <text key={h} x={95 + i * 50} y="27" textAnchor="middle" fill={c} fontSize="5.5" fontWeight="bold" fontFamily="monospace">{h}</text>
+      ))}
+      {/* Data rows */}
+      {people.slice(0, Math.min(added, people.length)).map((pr, i) => (
+        <motion.g key={`row-${i}`} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
+          <text x="95" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.name}</text>
+          <text x="145" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.age}</text>
+          <text x="195" y={40 + i * 12} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pr.fav}</text>
+        </motion.g>
+      ))}
+      {/* Counter */}
+      <text x="120" y="102" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace" opacity={0.5}>
+        Rows: {Math.min(added, people.length)} / {people.length}
+      </text>
+    </svg>
+  );
+}
+
+
+/* ── CL-025  Validation Rules ──────── */
+function ValidationRulesSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  const entries = [
+    { val: 'john@mail.com', rule: 'Email format', ok: true },
+    { val: '2025-13-45', rule: 'Date format', ok: false },
+    { val: '27', rule: 'Age range 0-120', ok: true },
+    { val: '-5', rule: 'Positive number', ok: false },
+    { val: 'AB12 3CD', rule: 'Postcode format', ok: true },
+  ];
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(s => (s + 1) % (entries.length + 2)), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>DATA VALIDATION</text>
+      {/* Entries */}
+      {entries.map((e, i) => {
+        const checked = i < step;
+        return (
+          <g key={i}>
+            {/* Value */}
+            <rect x="15" y={20 + i * 17} width="90" height="13" rx="3"
+              fill={checked ? (e.ok ? '#3fb950' : '#f85149') : c} fillOpacity={checked ? 0.08 : 0.03}
+              stroke={checked ? (e.ok ? '#3fb950' : '#f85149') : c} strokeOpacity={checked ? 0.3 : 0.06} strokeWidth="0.7" />
+            <text x="20" y={29 + i * 17} fill={checked ? (e.ok ? '#3fb950' : '#f85149') : 'var(--theme-muted)'} fontSize="5" fontFamily="monospace">{e.val}</text>
+            {/* Shield icon */}
+            {checked && (
+              <motion.text x="112" y={30 + i * 17} fill={e.ok ? '#3fb950' : '#f85149'} fontSize="8" fontWeight="bold"
+                initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                {e.ok ? '✓' : '✗'}
+              </motion.text>
+            )}
+            {/* Rule label */}
+            <rect x="125" y={20 + i * 17} width="100" height="13" rx="3" fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.05} />
+            <text x="130" y={29 + i * 17} fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">🛡 {e.rule}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-026  Misleading Graphs ─────── */
+function MisleadingGraphsSVG({ c, p }) {
+  const [honest, setHonest] = useState(false);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setHonest(h => !h), 2200);
+    return () => clearInterval(id);
+  }, [p]);
+  const data = [
+    { label: 'A', val: 85 },
+    { label: 'B', val: 90 },
+    { label: 'C', val: 88 },
+    { label: 'D', val: 92 },
+  ];
+  const minVal = honest ? 0 : 80;
+  const maxVal = 100;
+  const barW = 28, barGap = 12, ox = 50, oy = 90;
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill={c} fontSize="6.5" fontWeight="bold" fontFamily="monospace" opacity={0.5}>
+        {honest ? 'HONEST CHART ✓' : 'MISLEADING CHART ✗'}
+      </text>
+      {/* Y axis */}
+      <line x1={ox} y1="20" x2={ox} y2={oy} stroke={c} strokeOpacity={0.15} />
+      {/* Y labels */}
+      {(honest ? [0, 25, 50, 75, 100] : [80, 85, 90, 95, 100]).map((tick, i) => {
+        const y = oy - ((tick - minVal) / (maxVal - minVal)) * 65;
+        return (
+          <g key={tick}>
+            <line x1={ox - 3} y1={y} x2={ox} y2={y} stroke={c} strokeOpacity={0.1} />
+            <text x={ox - 6} y={y + 2} textAnchor="end" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">{tick}</text>
+            <line x1={ox} y1={y} x2={ox + 160} y2={y} stroke={c} strokeOpacity={0.03} strokeDasharray="2,3" />
+          </g>
+        );
+      })}
+      {/* X axis */}
+      <line x1={ox} y1={oy} x2={ox + 160} y2={oy} stroke={c} strokeOpacity={0.15} />
+      {/* Bars */}
+      {data.map((d, i) => {
+        const barH = ((d.val - minVal) / (maxVal - minVal)) * 65;
+        const x = ox + 15 + i * (barW + barGap);
+        return (
+          <g key={i}>
+            <motion.rect x={x} y={oy - barH} width={barW} height={barH} rx="2"
+              fill={honest ? '#3fb950' : '#f85149'} fillOpacity={0.25}
+              stroke={honest ? '#3fb950' : '#f85149'} strokeOpacity={0.4} strokeWidth="0.7"
+              animate={{ height: barH, y: oy - barH }} transition={{ duration: 0.6 }} />
+            <text x={x + barW / 2} y={oy + 8} textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{d.label}</text>
+            <text x={x + barW / 2} y={oy - barH - 3} textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">{d.val}</text>
+          </g>
+        );
+      })}
+      {/* Warning/OK badge */}
+      <rect x="175" y="22" width="55" height="22" rx="4"
+        fill={honest ? '#3fb950' : '#f85149'} fillOpacity={0.1} stroke={honest ? '#3fb950' : '#f85149'} strokeOpacity={0.3} />
+      <text x="202" y="36" textAnchor="middle" fill={honest ? '#3fb950' : '#f85149'} fontSize="5.5" fontWeight="bold" fontFamily="monospace">
+        {honest ? 'Y: 0-100' : 'Y: 80-100'}
+      </text>
+      <text x="202" y="55" textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">
+        {honest ? 'True scale' : 'Truncated!'}
+      </text>
+    </svg>
+  );
+}
+
+
+/* ── CL-030  Chart Types ─────── */
+function ChartTypesSVG({ c, p }) {
+  const [hi, setHi] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setHi(v => (v + 1) % 4), 1200);
+    return () => clearInterval(id);
+  }, [p]);
+  const barH = [18, 28, 22, 32];
+  const lineP = "M130,88 L145,72 L160,80 L175,65 L190,70 L205,60";
+  const pieSlices = [
+    { d: "M55,85 L55,65 A20,20 0 0,1 73,78 Z", o: 0.15 },
+    { d: "M55,85 L73,78 A20,20 0 0,1 47,67 Z", o: 0.25 },
+    { d: "M55,85 L47,67 A20,20 0 1,1 55,65 Z", o: 0.1 },
+  ];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <line x1="120" y1="5" x2="120" y2="105" stroke={c} strokeOpacity={0.08} />
+      <line x1="5" y1="55" x2="235" y2="55" stroke={c} strokeOpacity={0.08} />
+      {/* Bar chart – top-left */}
+      {barH.map((h, i) => (
+        <motion.rect key={i} x={15 + i * 22} y={45 - h} width={14} height={h} rx={2}
+          fill={c} fillOpacity={hi === 0 ? 0.25 : 0.08}
+          animate={p && hi === 0 ? { fillOpacity: [0.08, 0.3, 0.08] } : {}}
+          transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }} />
+      ))}
+      <text x="50" y="52" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Bar</text>
+      {/* Line chart – top-right */}
+      <motion.path d={lineP} fill="none" stroke={c} strokeWidth={1.5}
+        strokeOpacity={hi === 1 ? 0.6 : 0.15}
+        animate={p && hi === 1 ? { strokeOpacity: [0.15, 0.6, 0.15] } : {}}
+        transition={{ duration: 1, repeat: Infinity }} />
+      <text x="168" y="52" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Line</text>
+      {/* Pie chart – bottom-left */}
+      {pieSlices.map((s, i) => (
+        <motion.path key={i} d={s.d} fill={c} fillOpacity={hi === 2 ? s.o + 0.15 : s.o}
+          animate={p && hi === 2 ? { fillOpacity: [s.o, s.o + 0.2, s.o] } : {}}
+          transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }} />
+      ))}
+      <text x="55" y="102" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Pie</text>
+      {/* Scatter plot – bottom-right */}
+      {[[135,68],[150,75],[160,62],[175,80],[185,70],[195,65]].map(([cx2, cy2], i) => (
+        <motion.circle key={i} cx={cx2} cy={cy2} r={2.5} fill={c}
+          fillOpacity={hi === 3 ? 0.35 : 0.1}
+          animate={p && hi === 3 ? { fillOpacity: [0.1, 0.4, 0.1] } : {}}
+          transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }} />
+      ))}
+      <text x="168" y="102" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Scatter</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-031  Logic Gates ─────── */
+function LogicGatesSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(v => (v + 1) % 3), 1400);
+    return () => clearInterval(id);
+  }, [p]);
+  const gates = [
+    { x: 30, label: 'AND', inA: true, inB: true, out: true },
+    { x: 100, label: 'OR', inA: false, inB: true, out: true },
+    { x: 170, label: 'NOT', inA: true, inB: null, out: false },
+  ];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {gates.map((g, i) => (
+        <motion.g key={i} animate={p && step === i ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.6 }}
+          transition={{ duration: 1.2, repeat: Infinity }}>
+          <rect x={g.x} y={30} width={40} height={30} rx={4} fill={c} fillOpacity={step === i ? 0.18 : 0.06} stroke={c} strokeOpacity={0.2} />
+          <text x={g.x + 20} y={49} textAnchor="middle" fill={c} fontSize="6" fontFamily="monospace" fontWeight="bold">{g.label}</text>
+          {/* Inputs */}
+          <motion.rect x={g.x + 5} y={18} width={12} height={10} rx={2} fill={g.inA ? '#22c55e' : '#ef4444'} fillOpacity={0.5}
+            animate={p && step === i ? { y: [14, 20, 14] } : {}} transition={{ duration: 0.8, repeat: Infinity }} />
+          <text x={g.x + 11} y={26} textAnchor="middle" fill="white" fontSize="4" fontFamily="monospace">{g.inA ? 'T' : 'F'}</text>
+          {g.inB !== null && <>
+            <motion.rect x={g.x + 23} y={18} width={12} height={10} rx={2} fill={g.inB ? '#22c55e' : '#ef4444'} fillOpacity={0.5}
+              animate={p && step === i ? { y: [14, 20, 14] } : {}} transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }} />
+            <text x={g.x + 29} y={26} textAnchor="middle" fill="white" fontSize="4" fontFamily="monospace">{g.inB ? 'T' : 'F'}</text>
+          </>}
+          {/* Output */}
+          <motion.rect x={g.x + 14} y={66} width={12} height={10} rx={2} fill={g.out ? '#22c55e' : '#ef4444'} fillOpacity={step === i ? 0.7 : 0.2}
+            animate={p && step === i ? { scale: [1, 1.15, 1] } : {}} transition={{ duration: 0.8, repeat: Infinity }} />
+          <text x={g.x + 20} y={74} textAnchor="middle" fill="white" fontSize="4" fontFamily="monospace">{g.out ? 'T' : 'F'}</text>
+          <line x1={g.x + 20} y1={60} x2={g.x + 20} y2={66} stroke={c} strokeOpacity={0.2} />
+        </motion.g>
+      ))}
+      <text x="120" y="100" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Logic Gates</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-032  Decision Tree ─────── */
+function DecisionTreeSVG({ c, p }) {
+  const [path, setPath] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPath(v => (v + 1) % 4), 1500);
+    return () => clearInterval(id);
+  }, [p]);
+  const paths = [
+    [0, 0], [0, 1], [1, 0], [1, 1],
+  ];
+  const cur = paths[path];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Root diamond */}
+      <motion.g animate={p ? { scale: [1, 1.04, 1] } : {}} transition={{ duration: 2, repeat: Infinity }}>
+        <polygon points="120,8 140,22 120,36 100,22" fill={c} fillOpacity={0.15} stroke={c} strokeOpacity={0.3} />
+        <text x="120" y="25" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">Q1?</text>
+      </motion.g>
+      {/* Level 1 branches */}
+      <line x1="108" y1="36" x2="70" y2="50" stroke={c} strokeOpacity={cur[0] === 0 ? 0.5 : 0.1} strokeWidth={cur[0] === 0 ? 1.5 : 0.8} />
+      <line x1="132" y1="36" x2="170" y2="50" stroke={c} strokeOpacity={cur[0] === 1 ? 0.5 : 0.1} strokeWidth={cur[0] === 1 ? 1.5 : 0.8} />
+      {/* L1 diamonds */}
+      <polygon points="70,50 85,60 70,70 55,60" fill={c} fillOpacity={cur[0] === 0 ? 0.18 : 0.05} stroke={c} strokeOpacity={0.2} />
+      <text x="70" y="63" textAnchor="middle" fill={c} fontSize="4.5" fontFamily="monospace">Q2?</text>
+      <polygon points="170,50 185,60 170,70 155,60" fill={c} fillOpacity={cur[0] === 1 ? 0.18 : 0.05} stroke={c} strokeOpacity={0.2} />
+      <text x="170" y="63" textAnchor="middle" fill={c} fontSize="4.5" fontFamily="monospace">Q3?</text>
+      {/* Level 2 branches & leaves */}
+      {[[40,85,'A',0,0],[90,85,'B',0,1],[150,85,'C',1,0],[200,85,'D',1,1]].map(([lx,ly,lbl,p0,p1], i) => (
+        <g key={i}>
+          <line x1={p0 === 0 ? 70 : 170} y1={70} x2={lx} y2={ly - 8} stroke={c}
+            strokeOpacity={cur[0] === p0 && cur[1] === p1 ? 0.5 : 0.08} strokeWidth={cur[0] === p0 && cur[1] === p1 ? 1.5 : 0.8} />
+          <motion.rect x={lx - 12} y={ly - 8} width={24} height={14} rx={3}
+            fill={c} fillOpacity={cur[0] === p0 && cur[1] === p1 ? 0.25 : 0.05} stroke={c} strokeOpacity={0.15}
+            animate={p && cur[0] === p0 && cur[1] === p1 ? { fillOpacity: [0.1, 0.3, 0.1] } : {}}
+            transition={{ duration: 1, repeat: Infinity }} />
+          <text x={lx} y={ly + 1} textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">{lbl}</text>
+        </g>
+      ))}
+      <text x="120" y="106" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Decision Tree</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-033  Grading Logic ─────── */
+function GradingLogicSVG({ c, p }) {
+  const [score, setScore] = useState(85);
+  useEffect(() => {
+    if (!p) return;
+    const scores = [92, 78, 65, 45, 85, 55, 72, 38];
+    let i = 0;
+    const id = setInterval(() => { i = (i + 1) % scores.length; setScore(scores[i]); }, 1300);
+    return () => clearInterval(id);
+  }, [p]);
+  const grade = score >= 75 ? 'A' : score >= 60 ? 'B' : score >= 50 ? 'C' : 'F';
+  const gColor = grade === 'A' ? '#22c55e' : grade === 'B' ? '#3b82f6' : grade === 'C' ? '#f59e0b' : '#ef4444';
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Score input */}
+      <motion.rect x={95} y={5} width={50} height={16} rx={4} fill={c} fillOpacity={0.12} stroke={c} strokeOpacity={0.25}
+        animate={p ? { strokeOpacity: [0.15, 0.4, 0.15] } : {}} transition={{ duration: 1.2, repeat: Infinity }} />
+      <text x="120" y="16" textAnchor="middle" fill={c} fontSize="7" fontFamily="monospace" fontWeight="bold">{score}%</text>
+      <line x1="120" y1="21" x2="120" y2="30" stroke={c} strokeOpacity={0.2} />
+      {/* IF >=75 */}
+      <rect x={80} y={30} width={80} height={14} rx={3} fill={c} fillOpacity={score >= 75 ? 0.15 : 0.04} stroke={c} strokeOpacity={0.15} />
+      <text x="120" y="40" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">score ≥ 75?</text>
+      <line x1="120" y1="44" x2="120" y2="50" stroke={c} strokeOpacity={0.2} />
+      {/* IF >=60 */}
+      <rect x={80} y={50} width={80} height={14} rx={3} fill={c} fillOpacity={score < 75 && score >= 60 ? 0.15 : 0.04} stroke={c} strokeOpacity={0.15} />
+      <text x="120" y="60" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">score ≥ 60?</text>
+      <line x1="120" y1="64" x2="120" y2="70" stroke={c} strokeOpacity={0.2} />
+      {/* IF >=50 */}
+      <rect x={80} y={70} width={80} height={14} rx={3} fill={c} fillOpacity={score < 60 && score >= 50 ? 0.15 : 0.04} stroke={c} strokeOpacity={0.15} />
+      <text x="120" y="80" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">score ≥ 50?</text>
+      <line x1="120" y1="84" x2="120" y2="90" stroke={c} strokeOpacity={0.2} />
+      {/* Grade output */}
+      <motion.rect x={105} y={90} width={30} height={16} rx={5} fill={gColor} fillOpacity={0.25} stroke={gColor} strokeOpacity={0.4}
+        animate={p ? { scale: [1, 1.08, 1] } : {}} transition={{ duration: 0.8, repeat: Infinity }} />
+      <text x="120" y="101" textAnchor="middle" fill={gColor} fontSize="8" fontFamily="monospace" fontWeight="bold">{grade}</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-034  Data Story ─────── */
+function DataStorySVG({ c, p }) {
+  const [stage, setStage] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStage(v => (v + 1) % 3), 1400);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Data table */}
+      <motion.g animate={p && stage === 0 ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <rect x={10} y={20} width={55} height={60} rx={3} fill={c} fillOpacity={0.06} stroke={c} strokeOpacity={0.15} />
+        {[0,1,2,3,4].map(i => (
+          <g key={i}>
+            <line x1={14} y1={30 + i * 10} x2={61} y2={30 + i * 10} stroke={c} strokeOpacity={0.1} />
+            <rect x={15} y={32 + i * 10} width={20} height={5} rx={1} fill={c} fillOpacity={0.1} />
+            <rect x={38} y={32 + i * 10} width={20} height={5} rx={1} fill={c} fillOpacity={0.06} />
+          </g>
+        ))}
+        <text x="37" y="16" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Data</text>
+      </motion.g>
+      {/* Arrow 1 */}
+      <motion.path d="M70,50 L90,50" fill="none" stroke={c} strokeOpacity={stage >= 1 ? 0.4 : 0.1} strokeWidth={1.5}
+        markerEnd="url(#arrowDS)" animate={p && stage === 1 ? { strokeOpacity: [0.1, 0.5, 0.1] } : {}}
+        transition={{ duration: 0.8, repeat: Infinity }} />
+      <defs><marker id="arrowDS" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill={c} fillOpacity={0.4} /></marker></defs>
+      {/* Chart */}
+      <motion.g animate={p && stage === 1 ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <rect x={93} y={25} width={55} height={50} rx={3} fill={c} fillOpacity={0.06} stroke={c} strokeOpacity={0.15} />
+        {[15, 30, 22, 38, 25].map((h, i) => (
+          <rect key={i} x={100 + i * 9} y={65 - h} width={6} height={h} rx={1} fill={c} fillOpacity={0.2} />
+        ))}
+        <text x="120" y="20" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Chart</text>
+      </motion.g>
+      {/* Arrow 2 */}
+      <motion.path d="M153,50 L173,50" fill="none" stroke={c} strokeOpacity={stage >= 2 ? 0.4 : 0.1} strokeWidth={1.5}
+        markerEnd="url(#arrowDS)" animate={p && stage === 2 ? { strokeOpacity: [0.1, 0.5, 0.1] } : {}}
+        transition={{ duration: 0.8, repeat: Infinity }} />
+      {/* Story doc */}
+      <motion.g animate={p && stage === 2 ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <rect x={176} y={25} width={55} height={50} rx={3} fill={c} fillOpacity={0.06} stroke={c} strokeOpacity={0.15} />
+        {[0,1,2,3,4,5].map(i => (
+          <rect key={i} x={182} y={32 + i * 6} width={i % 2 === 0 ? 42 : 35} height={3} rx={1} fill={c} fillOpacity={0.12} />
+        ))}
+        <text x="203" y="20" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Story</text>
+      </motion.g>
+      <text x="120" y="100" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Data → Chart → Story</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-035  Quality Checklist ─────── */
+function QualityChecklistSVG({ c, p }) {
+  const [checked, setChecked] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setChecked(v => (v + 1) % 7), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  const items = [
+    { label: 'Formatting', pass: true },
+    { label: 'Spelling', pass: true },
+    { label: 'Citations', pass: false },
+    { label: 'Data range', pass: true },
+    { label: 'Labels', pass: false },
+    { label: 'Summary', pass: true },
+  ];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Clipboard */}
+      <rect x={65} y={5} width={110} height={95} rx={5} fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.15} />
+      <rect x={95} y={2} width={50} height={8} rx={3} fill={c} fillOpacity={0.1} />
+      <text x="120" y="8" textAnchor="middle" fill={c} fontSize="4" fontFamily="monospace">Checklist</text>
+      {items.map((item, i) => {
+        const visible = i < checked;
+        const y = 20 + i * 13;
+        return (
+          <g key={i}>
+            <rect x={75} y={y} width={10} height={10} rx={2} fill={c} fillOpacity={0.05} stroke={c} strokeOpacity={0.15} />
+            {visible && (
+              <motion.text x={80} y={y + 8} textAnchor="middle" fontSize="8" fontFamily="monospace"
+                fill={item.pass ? '#22c55e' : '#ef4444'}
+                initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}>
+                {item.pass ? '✓' : '✗'}
+              </motion.text>
+            )}
+            <text x={92} y={y + 8} fill={c} fontSize="5" fontFamily="monospace" fillOpacity={visible ? 0.8 : 0.3}>{item.label}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+
+/* ── CL-036  AI Content Detect ─────── */
+function AIContentDetectSVG({ c, p }) {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPhase(v => (v + 1) % 4), 1200);
+    return () => clearInterval(id);
+  }, [p]);
+  const conf = phase === 3 ? '87%' : '...';
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Human card */}
+      <rect x={15} y={20} width={70} height={50} rx={4} fill={c} fillOpacity={0.06} stroke={c} strokeOpacity={0.15} />
+      {[0,1,2,3].map(i => (
+        <rect key={i} x={22} y={30 + i * 9} width={i % 2 === 0 ? 52 : 42} height={4} rx={1} fill={c} fillOpacity={0.1} />
+      ))}
+      <text x="50" y="78" textAnchor="middle" fill="#22c55e" fontSize="5" fontFamily="monospace">Human ✓</text>
+      {/* AI card */}
+      <rect x={155} y={20} width={70} height={50} rx={4} fill={c} fillOpacity={0.06} stroke={c} strokeOpacity={0.15} />
+      {[0,1,2,3].map(i => (
+        <rect key={i} x={162} y={30 + i * 9} width={i % 2 === 0 ? 52 : 42} height={4} rx={1} fill={c} fillOpacity={0.1} />
+      ))}
+      <text x="190" y="78" textAnchor="middle" fill="#f59e0b" fontSize="5" fontFamily="monospace">AI?</text>
+      {/* Scanner */}
+      {phase >= 1 && phase <= 2 && (
+        <motion.line x1={155} y1={25} x2={155} y2={65} stroke="#f59e0b" strokeWidth={1} strokeOpacity={0.5}
+          animate={{ x1: [155, 225, 155], x2: [155, 225, 155] }}
+          transition={{ duration: 1.5, repeat: Infinity }} />
+      )}
+      {/* Center result */}
+      <motion.rect x={98} y={35} width={44} height={24} rx={6} fill={c} fillOpacity={phase === 3 ? 0.18 : 0.05} stroke={c} strokeOpacity={0.2}
+        animate={p && phase === 3 ? { scale: [1, 1.06, 1] } : {}} transition={{ duration: 0.8, repeat: Infinity }} />
+      <text x="120" y="44" textAnchor="middle" fill="var(--theme-muted)" fontSize="4" fontFamily="monospace">Confidence</text>
+      <text x="120" y="54" textAnchor="middle" fill={c} fontSize="7" fontFamily="monospace" fontWeight="bold">{conf}</text>
+      <text x="120" y="100" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">AI Detection</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-037  Misinfo Flowchart ─────── */
+function MisinfoFlowchartSVG({ c, p }) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(v => (v + 1) % 4), 1300);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Diamond: Source? */}
+      <motion.g animate={p && step === 0 ? { opacity: [0.6, 1, 0.6] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <polygon points="120,5 145,18 120,31 95,18" fill={c} fillOpacity={step >= 0 ? 0.15 : 0.05} stroke={c} strokeOpacity={0.25} />
+        <text x="120" y="21" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">Source?</text>
+      </motion.g>
+      <line x1="120" y1="31" x2="120" y2="40" stroke={c} strokeOpacity={step >= 1 ? 0.4 : 0.1} />
+      {/* Rect: Evaluate */}
+      <motion.rect x={85} y={40} width={70} height={16} rx={3} fill={c} fillOpacity={step >= 1 ? 0.15 : 0.04} stroke={c} strokeOpacity={0.15}
+        animate={p && step === 1 ? { fillOpacity: [0.05, 0.2, 0.05] } : {}} transition={{ duration: 1, repeat: Infinity }} />
+      <text x="120" y="51" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">Evaluate claim</text>
+      <line x1="120" y1="56" x2="120" y2="65" stroke={c} strokeOpacity={step >= 2 ? 0.4 : 0.1} />
+      {/* Diamond: Cross-ref? */}
+      <motion.g animate={p && step === 2 ? { opacity: [0.6, 1, 0.6] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <polygon points="120,65 148,78 120,91 92,78" fill={c} fillOpacity={step >= 2 ? 0.15 : 0.05} stroke={c} strokeOpacity={0.25} />
+        <text x="120" y="81" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">Cross-ref?</text>
+      </motion.g>
+      {/* Verdict branches */}
+      <line x1="92" y1="78" x2="40" y2="100" stroke="#22c55e" strokeOpacity={step === 3 ? 0.5 : 0.1} />
+      <line x1="148" y1="78" x2="200" y2="100" stroke="#ef4444" strokeOpacity={step === 3 ? 0.5 : 0.1} />
+      <motion.text x="40" y="107" textAnchor="middle" fill="#22c55e" fontSize="5" fontFamily="monospace"
+        animate={p && step === 3 ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.3 }}
+        transition={{ duration: 1, repeat: Infinity }}>Credible</motion.text>
+      <motion.text x="200" y="107" textAnchor="middle" fill="#ef4444" fontSize="5" fontFamily="monospace"
+        animate={p && step === 3 ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.3 }}
+        transition={{ duration: 1, repeat: Infinity }}>Suspect</motion.text>
+    </svg>
+  );
+}
+
+
+/* ── CL-038  Human Router ─────── */
+function HumanRouterSVG({ c, p }) {
+  const nodes = [[40,30],[100,15],[160,30],[200,60],[160,85],[100,95],[40,75],[70,55],[140,55]];
+  const edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0],[0,7],[7,8],[8,2],[7,1],[8,4]];
+  const route = [0, 7, 8, 2, 3, 4];
+  const [hop, setHop] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setHop(v => (v + 1) % route.length), 700);
+    return () => clearInterval(id);
+  }, [p]);
+  const active = route[hop];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {edges.map(([a, b], i) => (
+        <line key={i} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]}
+          stroke={c} strokeOpacity={0.1} strokeWidth={0.8} />
+      ))}
+      {/* Highlighted path */}
+      {route.slice(0, hop).map((_, i) => {
+        if (i >= route.length - 1) return null;
+        const a = route[i], b = route[i + 1];
+        return <line key={`r${i}`} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]}
+          stroke={c} strokeOpacity={0.5} strokeWidth={1.8} />;
+      })}
+      {nodes.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={6} fill={c} fillOpacity={i === active ? 0.3 : 0.06} stroke={c} strokeOpacity={0.2} />
+      ))}
+      {/* Packet */}
+      <motion.rect x={nodes[active][0] - 3} y={nodes[active][1] - 3} width={6} height={6} rx={1}
+        fill={c} fillOpacity={0.7}
+        animate={p ? { scale: [1, 1.3, 1] } : {}} transition={{ duration: 0.5, repeat: Infinity }} />
+      <text x="120" y="108" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Packet Routing</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-039  Algorithm Olympics ─────── */
+function AlgorithmOlympicsSVG({ c, p }) {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setActive(v => (v + 1) % 6), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  const stations = [
+    { x: 120, y: 15, label: '1' },
+    { x: 170, y: 35, label: '2' },
+    { x: 170, y: 70, label: '3' },
+    { x: 120, y: 90, label: '4' },
+    { x: 70, y: 70, label: '5' },
+    { x: 70, y: 35, label: '6' },
+  ];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Connecting lines */}
+      {stations.map((s, i) => {
+        const next = stations[(i + 1) % 6];
+        return <line key={i} x1={s.x} y1={s.y} x2={next.x} y2={next.y} stroke={c} strokeOpacity={0.08} />;
+      })}
+      {/* Timer center */}
+      <circle cx={120} cy={52} r={14} fill={c} fillOpacity={0.05} stroke={c} strokeOpacity={0.15} />
+      <motion.text x="120" y="56" textAnchor="middle" fill={c} fontSize="7" fontFamily="monospace" fontWeight="bold"
+        animate={p ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.6 }}
+        transition={{ duration: 1, repeat: Infinity }}>⏱</motion.text>
+      {/* Station badges */}
+      {stations.map((s, i) => (
+        <motion.g key={i} animate={p && active === i ? { scale: [1, 1.2, 1] } : {}}
+          transition={{ duration: 0.6, repeat: Infinity }}>
+          <circle cx={s.x} cy={s.y} r={10} fill={c} fillOpacity={active === i ? 0.25 : 0.06} stroke={c} strokeOpacity={active === i ? 0.4 : 0.12} />
+          <text x={s.x} y={s.y + 3} textAnchor="middle" fill={c} fontSize="6" fontFamily="monospace" fontWeight="bold">{s.label}</text>
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
+
+/* ── CL-040  Practical Assess ─────── */
+function PracticalAssessSVG({ c, p }) {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setProgress(v => (v + 1) % 5), 1100);
+    return () => clearInterval(id);
+  }, [p]);
+  const sections = ['Word', 'Excel', 'Files', 'Dig.Lit'];
+  const pct = Math.round((progress / 4) * 100);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Paper */}
+      <rect x={50} y={8} width={140} height={80} rx={4} fill={c} fillOpacity={0.04} stroke={c} strokeOpacity={0.15} />
+      <text x="120" y="20" textAnchor="middle" fill={c} fontSize="6" fontFamily="monospace" fontWeight="bold">Assessment</text>
+      {/* Sections */}
+      {sections.map((s, i) => (
+        <motion.g key={i}>
+          <rect x={60} y={28 + i * 14} width={120} height={11} rx={2}
+            fill={c} fillOpacity={i < progress ? 0.15 : 0.03} stroke={c} strokeOpacity={0.1} />
+          <text x={68} y={36 + i * 14} fill={c} fontSize="5" fontFamily="monospace" fillOpacity={i < progress ? 0.9 : 0.3}>{s}</text>
+          {i < progress && (
+            <motion.text x={170} y={36 + i * 14} textAnchor="end" fill="#22c55e" fontSize="5" fontFamily="monospace"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>Done</motion.text>
+          )}
+        </motion.g>
+      ))}
+      {/* Progress bar */}
+      <rect x={60} y={90} width={120} height={6} rx={3} fill={c} fillOpacity={0.05} stroke={c} strokeOpacity={0.1} />
+      <motion.rect x={60} y={90} width={progress * 30} height={6} rx={3} fill={c} fillOpacity={0.25}
+        animate={p ? { fillOpacity: [0.15, 0.3, 0.15] } : {}} transition={{ duration: 1, repeat: Infinity }} />
+      <text x="120" y="104" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{pct}% complete</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-041  Binary Necklace ─────── */
+function BinaryNecklaceSVG({ c, p }) {
+  const bits = [0, 1, 0, 0, 0, 0, 0, 1]; // 'A' = 65
+  const [reveal, setReveal] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setReveal(v => (v + 1) % 10), 600);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="14" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Binary Necklace</text>
+      {/* String / beads */}
+      <line x1={30} y1={45} x2={210} y2={45} stroke={c} strokeOpacity={0.1} strokeWidth={1} />
+      {bits.map((b, i) => {
+        const cx2 = 42 + i * 22;
+        return (
+          <motion.g key={i}>
+            <motion.circle cx={cx2} cy={45} r={8}
+              fill={b === 1 ? c : 'transparent'} fillOpacity={b === 1 ? 0.3 : 0}
+              stroke={c} strokeOpacity={0.25} strokeWidth={1.2}
+              animate={p && reveal > i ? { scale: [1, 1.1, 1] } : {}}
+              transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.08 }} />
+            <text x={cx2} y={48} textAnchor="middle" fill={c} fontSize="6" fontFamily="monospace" fillOpacity={reveal > i ? 0.9 : 0.2}>{b}</text>
+          </motion.g>
+        );
+      })}
+      {/* Decode line */}
+      <line x1={60} y1={65} x2={180} y2={65} stroke={c} strokeOpacity={0.06} />
+      <text x="70" y="75" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">01000001 =</text>
+      <motion.text x="150" y="75" fill={c} fontSize="10" fontFamily="monospace" fontWeight="bold"
+        animate={p && reveal >= 9 ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.15 }}
+        transition={{ duration: 1, repeat: Infinity }}>A</motion.text>
+      <text x="120" y="100" textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">ASCII: 65</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-042  Algorithmic Art ─────── */
+function AlgorithmicArtSVG({ c, p }) {
+  const [drawn, setDrawn] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setDrawn(v => (v + 1) % 7), 900);
+    return () => clearInterval(id);
+  }, [p]);
+  const steps = [
+    { el: <rect x={80} y={25} width={30} height={30} rx={0} fill="none" stroke={c} strokeOpacity={0.3} />, label: '1: Square' },
+    { el: <rect x={90} y={35} width={30} height={30} rx={0} fill="none" stroke={c} strokeOpacity={0.25} />, label: '2: Offset' },
+    { el: <rect x={100} y={45} width={30} height={30} rx={0} fill="none" stroke={c} strokeOpacity={0.2} />, label: '3: Offset' },
+    { el: <circle cx={120} cy={50} r={20} fill="none" stroke={c} strokeOpacity={0.15} />, label: '4: Circle' },
+    { el: <line x1={80} y1={25} x2={130} y2={75} stroke={c} strokeOpacity={0.2} />, label: '5: Diagonal' },
+    { el: <line x1={130} y1={25} x2={80} y2={75} stroke={c} strokeOpacity={0.2} />, label: '6: Cross' },
+  ];
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Algorithmic Art</text>
+      {/* Canvas area */}
+      <rect x={70} y={18} width={100} height={68} rx={3} fill={c} fillOpacity={0.02} stroke={c} strokeOpacity={0.08} />
+      {steps.map((s, i) => i < drawn ? <g key={i}>{s.el}</g> : null)}
+      {/* Instruction labels on right */}
+      {steps.map((s, i) => (
+        <motion.text key={i} x={185} y={24 + i * 10} fill={c} fontSize="4.5" fontFamily="monospace"
+          fillOpacity={i < drawn ? 0.7 : 0.15}
+          animate={p && i === drawn - 1 ? { fillOpacity: [0.3, 0.9, 0.3] } : {}}
+          transition={{ duration: 0.8, repeat: Infinity }}>{s.label}</motion.text>
+      ))}
+      <text x="120" y="100" textAnchor="middle" fill="var(--theme-muted)" fontSize="4.5" fontFamily="monospace">Step-by-step pattern</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-043  Compression ─────── */
+function CompressionSVG({ c, p }) {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setPhase(v => (v + 1) % 3), 1400);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* Original block */}
+      <motion.g animate={p && phase === 0 ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.7 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <rect x={15} y={20} width={80} height={55} rx={3} fill={c} fillOpacity={0.08} stroke={c} strokeOpacity={0.15} />
+        {[0,1,2,3,4,5,6].map(i => (
+          <rect key={i} x={20} y={26 + i * 7} width={i % 2 === 0 ? 68 : 55} height={4} rx={1} fill={c} fillOpacity={0.12} />
+        ))}
+        <text x="55" y="84" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Original</text>
+      </motion.g>
+      {/* Arrow */}
+      <motion.path d="M100,48 L140,48" fill="none" stroke={c} strokeWidth={2} strokeOpacity={phase >= 1 ? 0.4 : 0.1}
+        markerEnd="url(#arrowCMP)"
+        animate={p && phase === 1 ? { strokeOpacity: [0.1, 0.5, 0.1] } : {}}
+        transition={{ duration: 0.8, repeat: Infinity }} />
+      <defs><marker id="arrowCMP" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill={c} fillOpacity={0.4} /></marker></defs>
+      <text x="120" y="43" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">compress</text>
+      {/* Compressed block */}
+      <motion.g animate={p && phase === 2 ? { opacity: [0.5, 1, 0.5] } : { opacity: 0.7 }}
+        transition={{ duration: 1, repeat: Infinity }}>
+        <rect x={150} y={30} width={50} height={35} rx={3} fill={c} fillOpacity={0.12} stroke={c} strokeOpacity={0.2} />
+        {[0,1,2,3].map(i => (
+          <rect key={i} x={155} y={36 + i * 7} width={i % 2 === 0 ? 38 : 30} height={4} rx={1} fill={c} fillOpacity={0.18} />
+        ))}
+        <text x="175" y="74" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Compressed</text>
+      </motion.g>
+      {/* Ratio */}
+      <motion.text x="120" y="98" textAnchor="middle" fill={c} fontSize="7" fontFamily="monospace" fontWeight="bold"
+        animate={p && phase === 2 ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.4 }}
+        transition={{ duration: 1, repeat: Infinity }}>3:1 ratio</motion.text>
+    </svg>
+  );
+}
+
+
+/* ── CL-044  Shortest Path ─────── */
+function ShortestPathSVG({ c, p }) {
+  const nodes = [[30,55],[75,20],[75,85],[130,55],[185,25],[185,80],[220,55]];
+  const edges = [
+    [0,1,4],[0,2,2],[1,3,5],[2,3,1],[1,4,6],[3,4,3],[3,5,4],[4,6,2],[5,6,3]
+  ];
+  const shortPath = [0, 2, 3, 4, 6]; // shortest
+  const [seg, setSeg] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setSeg(v => (v + 1) % (shortPath.length + 1)), 800);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      {/* All edges with weights */}
+      {edges.map(([a, b, w], i) => {
+        const isOnPath = shortPath.includes(a) && shortPath.includes(b) &&
+          Math.abs(shortPath.indexOf(a) - shortPath.indexOf(b)) === 1;
+        const lit = isOnPath && seg > Math.min(shortPath.indexOf(a), shortPath.indexOf(b));
+        return (
+          <g key={i}>
+            <line x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]}
+              stroke={lit ? c : c} strokeOpacity={lit ? 0.55 : 0.1} strokeWidth={lit ? 2 : 0.8} />
+            <text x={(nodes[a][0] + nodes[b][0]) / 2 + 3} y={(nodes[a][1] + nodes[b][1]) / 2 - 3}
+              fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">{w}</text>
+          </g>
+        );
+      })}
+      {/* Nodes */}
+      {nodes.map(([x, y], i) => {
+        const onPath = shortPath.includes(i) && seg > shortPath.indexOf(i);
+        return (
+          <motion.circle key={i} cx={x} cy={y} r={7}
+            fill={c} fillOpacity={onPath ? 0.3 : 0.06} stroke={c} strokeOpacity={onPath ? 0.5 : 0.15}
+            animate={p && onPath ? { r: [7, 9, 7] } : {}} transition={{ duration: 1, repeat: Infinity }} />
+        );
+      })}
+      <text x="30" y="66" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">S</text>
+      <text x="220" y="66" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">E</text>
+      <text x="120" y="106" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Shortest Path</text>
+    </svg>
+  );
+}
+
+
+/* ── CL-045  Searching Challenge ─────── */
+function SearchingChallengeSVG({ c, p }) {
+  const items = [3, 7, 12, 19, 24, 31, 38, 42, 55, 63];
+  const target = 31;
+  const searchSteps = [4, 7, 5]; // indices checked in binary search for 31
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    const id = setInterval(() => setStep(v => (v + 1) % 5), 1000);
+    return () => clearInterval(id);
+  }, [p]);
+  const activeIdx = step < searchSteps.length ? searchSteps[step] : step === 3 ? 5 : -1;
+  const found = step >= 3;
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="14" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Binary Search for {target}</text>
+      {/* Number line */}
+      <line x1={15} y1={50} x2={225} y2={50} stroke={c} strokeOpacity={0.1} />
+      {items.map((v, i) => {
+        const x = 24 + i * 20;
+        const isActive = i === activeIdx;
+        const isFound = found && v === target;
+        return (
+          <g key={i}>
+            <motion.rect x={x - 8} y={35} width={16} height={16} rx={2}
+              fill={c} fillOpacity={isFound ? 0.35 : isActive ? 0.2 : 0.05} stroke={c} strokeOpacity={isActive || isFound ? 0.4 : 0.1}
+              animate={p && isActive ? { fillOpacity: [0.08, 0.25, 0.08] } : {}}
+              transition={{ duration: 0.6, repeat: Infinity }} />
+            <text x={x} y={46} textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">{v}</text>
+          </g>
+        );
+      })}
+      {/* Arrow pointer */}
+      {activeIdx >= 0 && (
+        <motion.g animate={p ? { y: [0, -3, 0] } : {}} transition={{ duration: 0.5, repeat: Infinity }}>
+          <polygon points={`${24 + activeIdx * 20},58 ${24 + activeIdx * 20 - 4},66 ${24 + activeIdx * 20 + 4},66`}
+            fill={c} fillOpacity={0.4} />
+          <text x={24 + activeIdx * 20} y="75" textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">
+            {found ? '✓' : 'check'}
+          </text>
+        </motion.g>
+      )}
+      {/* Status */}
+      <motion.text x="120" y="95" textAnchor="middle" fill={found ? '#22c55e' : c} fontSize="6" fontFamily="monospace" fontWeight="bold"
+        animate={p && found ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.5 }}
+        transition={{ duration: 0.8, repeat: Infinity }}>
+        {found ? 'Found!' : `Step ${Math.min(step + 1, 3)} of 3`}
+      </motion.text>
+    </svg>
+  );
+}
+
+
+/* ── CL-046  Sorting Showdown ─────── */
+function SortingShowdownSVG({ c, p }) {
+  const initial = [35, 15, 40, 10, 25, 30, 20];
+  const [bars, setBars] = useState(initial);
+  const [swapIdx, setSwapIdx] = useState(0);
+  const [comps, setComps] = useState(0);
+  useEffect(() => {
+    if (!p) return;
+    let arr = [...initial];
+    let idx = 0;
+    let count = 0;
+    const id = setInterval(() => {
+      if (idx >= arr.length - 1) { idx = 0; arr = [...initial]; count = 0; }
+      count++;
+      if (arr[idx] > arr[idx + 1]) {
+        const tmp = arr[idx]; arr[idx] = arr[idx + 1]; arr[idx + 1] = tmp;
+      }
+      setBars([...arr]);
+      setSwapIdx(idx);
+      setComps(count);
+      idx++;
+    }, 700);
+    return () => clearInterval(id);
+  }, [p]);
+  return (
+    <svg viewBox="0 0 240 110" className="w-full h-auto">
+      <text x="120" y="12" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">Bubble Sort</text>
+      {bars.map((h, i) => {
+        const x = 40 + i * 25;
+        const active = i === swapIdx || i === swapIdx + 1;
+        return (
+          <motion.g key={i}>
+            <motion.rect x={x} y={85 - h} width={18} height={h} rx={2}
+              fill={c} fillOpacity={active ? 0.35 : 0.12} stroke={c} strokeOpacity={active ? 0.4 : 0.1}
+              animate={p && active ? { fillOpacity: [0.12, 0.4, 0.12] } : {}}
+              transition={{ duration: 0.5, repeat: Infinity }} />
+            <text x={x + 9} y={92} textAnchor="middle" fill={c} fontSize="5" fontFamily="monospace">{h}</text>
+          </motion.g>
+        );
+      })}
+      {/* Comparison counter */}
+      <text x="120" y="104" textAnchor="middle" fill="var(--theme-muted)" fontSize="5" fontFamily="monospace">
+        Comparisons: {comps}
       </text>
     </svg>
   );
